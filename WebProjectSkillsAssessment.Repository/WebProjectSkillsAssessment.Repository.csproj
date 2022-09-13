@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebProjectSkillsAssessment.Domain\WebProjectSkillsAssessment.Domain.csproj" />
+    <ProjectReference Include="..\WebProjectSkillsAssessment.Bussiness\WebProjectSkillsAssessment.Bussiness.csproj" />
   </ItemGroup>
 
 </Project>

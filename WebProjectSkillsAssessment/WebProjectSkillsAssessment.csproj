@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebProjectSkillsAssessment.Bussiness\WebProjectSkillsAssessment.Bussiness.csproj" />
+    <ProjectReference Include="..\WebProjectSkillsAssessment.Domain\WebProjectSkillsAssessment.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

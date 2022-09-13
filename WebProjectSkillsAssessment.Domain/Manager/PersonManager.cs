@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebProjectSkillsAssessment.Bussiness.Interface
+namespace WebProjectSkillsAssessment.Domain.Manager
 {
-    public interface ITransationBusiness
+    public class PersonManager
     {
-
     }
 }

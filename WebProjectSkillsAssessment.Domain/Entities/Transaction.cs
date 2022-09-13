@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebProjectSkillsAssessment.Bussiness.Interface
+namespace WebProjectSkillsAssessment.Domain.Entities
 {
-    public interface IPersonBusiness
+    internal class Transaction
     {
     }
 }
