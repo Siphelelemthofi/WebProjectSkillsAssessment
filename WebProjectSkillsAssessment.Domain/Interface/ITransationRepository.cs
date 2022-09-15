@@ -7,8 +7,8 @@ using WebProjectSkillsAssessment.Domain.Entities;
 
 namespace WebProjectSkillsAssessment.Bussiness.Interface
 {
-    public interface IPersonRepository
+    public interface ITransationRepository
     {
-        List<Person> GetPersonList();
+        List<Transaction> GetTransactionsByAccountCodeOrId(int AccountCode);
     }
 }

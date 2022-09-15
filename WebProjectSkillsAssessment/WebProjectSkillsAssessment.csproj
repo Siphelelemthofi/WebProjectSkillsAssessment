@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebProjectSkillsAssessment.Bussiness\WebProjectSkillsAssessment.Bussiness.csproj" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WebProjectSkillsAssessment.Domain\WebProjectSkillsAssessment.Domain.csproj" />
+    <ProjectReference Include="..\WebProjectSkillsAssessment.Repository\WebProjectSkillsAssessment.Repository.csproj" />
   </ItemGroup>
 
 </Project>

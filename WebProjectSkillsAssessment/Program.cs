@@ -1,8 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using WebProjectSkillsAssessment.Bussiness.Interface;
+using WebProjectSkillsAssessment.Repository.AccountRepository;
+using WebProjectSkillsAssessment.Repository.Data;
+using WebProjectSkillsAssessment.Repository.PersonRepository;
+using WebProjectSkillsAssessment.Repository.TransactionRepository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<DataContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<ITransationRepository, TransactionRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

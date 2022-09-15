@@ -1,0 +1,37 @@
+﻿@using WebProjectSkillsAssessment.Domain.Entities
+@model List<Transaction>
+
+<style>
+    .top-right {
+        top: 0;
+        right: 0;
+    }
+</style>
+<div class="jumbotron jumbotron-fluid">
+    <p>
+        <table class=table>
+            <thead class="table-primary">
+                <tr>
+                    <th>@Html.DisplayName("Code")</th>
+                    <th>@Html.DisplayName("Transaction Date")</th>
+                    <th>@Html.DisplayName("CaptureDate")</th>
+                    <th>@Html.DisplayName("Action")</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem =>item.Code)</td>
+                        <td>@Html.DisplayFor(modelItem =>item.TransactionDate)</td>
+                        <td>@Html.DisplayFor(modelItem =>item.CaptureDate)</td>
+                        <td>
+                            <a asp-controller="/Accounts" asp-action="GetAccountDetailsByAccountNumber" asp-route-AccountCode="@item.Code" class="btn bg-gradient-primary mt-2 me-2">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </p>
+</div>

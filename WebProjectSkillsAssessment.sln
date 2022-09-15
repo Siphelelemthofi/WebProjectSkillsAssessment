@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProjectSkillsAssessment", "WebProjectSkillsAssessment\WebProjectSkillsAssessment.csproj", "{F34F1DFB-20CC-4204-8AB5-AB7B83C0EBC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebProjectSkillsAssessment", "WebProjectSkillsAssessment\WebProjectSkillsAssessment.csproj", "{F34F1DFB-20CC-4204-8AB5-AB7B83C0EBC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProjectSkillsAssessment.Bussiness", "WebProjectSkillsAssessment.Bussiness\WebProjectSkillsAssessment.Bussiness.csproj", "{9FD0235D-CE42-4AA4-A242-076AB9DC9209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebProjectSkillsAssessment.Domain", "WebProjectSkillsAssessment.Domain\WebProjectSkillsAssessment.Domain.csproj", "{268A8DC0-D55B-48A3-93E9-281305627C2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProjectSkillsAssessment.Domain", "WebProjectSkillsAssessment.Domain\WebProjectSkillsAssessment.Domain.csproj", "{268A8DC0-D55B-48A3-93E9-281305627C2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebProjectSkillsAssessment.Repository", "WebProjectSkillsAssessment.Repository\WebProjectSkillsAssessment.Repository.csproj", "{BD23FD68-F499-44A0-9AEA-22C1C32F3B0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProjectSkillsAssessment.Repository", "WebProjectSkillsAssessment.Repository\WebProjectSkillsAssessment.Repository.csproj", "{BD23FD68-F499-44A0-9AEA-22C1C32F3B0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebProjectSkillsAssessment.ViewModel", "WebProjectSkillsAssessment.ViewModel\WebProjectSkillsAssessment.ViewModel.csproj", "{2788B117-F881-4F53-86FB-0987937A825F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{F34F1DFB-20CC-4204-8AB5-AB7B83C0EBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F34F1DFB-20CC-4204-8AB5-AB7B83C0EBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F34F1DFB-20CC-4204-8AB5-AB7B83C0EBC8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9FD0235D-CE42-4AA4-A242-076AB9DC9209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FD0235D-CE42-4AA4-A242-076AB9DC9209}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FD0235D-CE42-4AA4-A242-076AB9DC9209}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FD0235D-CE42-4AA4-A242-076AB9DC9209}.Release|Any CPU.Build.0 = Release|Any CPU
 		{268A8DC0-D55B-48A3-93E9-281305627C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{268A8DC0-D55B-48A3-93E9-281305627C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{268A8DC0-D55B-48A3-93E9-281305627C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{BD23FD68-F499-44A0-9AEA-22C1C32F3B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD23FD68-F499-44A0-9AEA-22C1C32F3B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD23FD68-F499-44A0-9AEA-22C1C32F3B0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2788B117-F881-4F53-86FB-0987937A825F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2788B117-F881-4F53-86FB-0987937A825F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2788B117-F881-4F53-86FB-0987937A825F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2788B117-F881-4F53-86FB-0987937A825F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
