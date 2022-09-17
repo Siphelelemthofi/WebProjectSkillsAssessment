@@ -31,13 +31,13 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
             return returnResult.ToList();
              
         }
-        public void AddNewPerson (Person person)
+        public void AddNewPerson (AddNewPerson  addNewPerson)
         {
             object[] parameters =
             {
-                new SqlParameter("@Name",person.Name),
-                new SqlParameter("@Surname",person.Surname),
-                new SqlParameter("@Id_Number",person.Id_number)
+                new SqlParameter("@Name",addNewPerson.Name),
+                new SqlParameter("@Surname",addNewPerson.Surname),
+                new SqlParameter("@Id_Number",addNewPerson.Id_number)
             };
             var query = "EXEC [AddNewPerson] @Name,@Surname,@Id_Number";
             _dataContext.Database.ExecuteSqlRaw(query, parameters);
@@ -72,6 +72,24 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
             };
             var query = "EXEC [UpdatepersonInformation] @Code,@Name,@Surname";
             _dataContext.Database.ExecuteSqlRaw(query, parameter);
+        }
+        public List<GetAllIdNumberForPersons> GetAllIdNumber()
+        {
+            var query = "EXEC [GetAllPersonIdNumbers]";
+            var returnResult = _dataContext.Set<GetAllIdNumberForPersons>().FromSqlRaw(query);
+            return returnResult.ToList();
+        }
+        public bool CheckIfIdNumberExist(string IdNumber)
+        {
+            var checkIdNumber = (from CountIdNumber in GetAllIdNumber().Where(s => s.Id_number.Equals(IdNumber)) select CountIdNumber).Count();
+            if(checkIdNumber > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

@@ -9,10 +9,12 @@ namespace WebProjectSkillsAssessment.Bussiness.Interface
 {
     public interface IPersonRepository
     {
-         List<Person> GetPersonList(string SearchString);
-         void AddNewPerson(Person person);
+        List<Person> GetPersonList(string SearchString);
+        void AddNewPerson(AddNewPerson  addNewPerson);
         void UpdatePersonInformation(Person person);
         void DeleteUserWithNoAccountOrAccountClosed(int Code);
         Person GetPersonByCodeOrId(int Code);
+        List<GetAllIdNumberForPersons> GetAllIdNumber();
+        bool CheckIfIdNumberExist(string IdNumber);
     }
 }

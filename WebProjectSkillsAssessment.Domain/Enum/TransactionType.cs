@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebProjectSkillsAssessment.Bussiness
+namespace WebProjectSkillsAssessment.Domain.Enum
 {
-    public class ObjectMapper
+    public enum TransactionType
     {
+        Debit,
+        Credit
     }
 }

@@ -18,17 +18,39 @@ namespace WebProjectSkillsAssessment.Repository.TransactionRepository
         {
             _dataContext = dataContext; 
         }
-        public List<Transaction> GetTransactionsByAccountCodeOrId(int AccountCode)
+        public List<GetTransactionsByAccountCodeOrId> GetTransactionsByAccountCodeOrId(int AccountCode)
         {
             var parameters = new SqlParameter[]
            {
                 new SqlParameter("@AccountCode", AccountCode)
             };
             var query = "EXEC [GetTransactionsByAccountCodeOrId] @AccountCode";
-            var returnResult = _dataContext.Set<Transaction>().FromSqlRaw(query, parameters);
+            var returnResult = _dataContext.Set<GetTransactionsByAccountCodeOrId>().FromSqlRaw(query, parameters);
             return returnResult.ToList();
         }
+        public Transaction GetTransactionDetailsCodeOrId(int AccountCode)
+        {
+            var parameters = new SqlParameter[]
+           {
+                new SqlParameter("@AccountCode", AccountCode)
+            };
+            var query = "EXEC [GetTransactionsDetailsCodeOrId] @AccountCode";
+            var returnResult = _dataContext.Set<Transaction>().FromSqlRaw(query, parameters).ToList();
+            return returnResult.FirstOrDefault();
+        }
+        public void AddNewTransaction(Transaction  transaction)
+        {
+            object[] parameters =
+            {
+                new SqlParameter("@Code",transaction.Code),
+                new SqlParameter("@TransactionDate",transaction.TransactionDate),
+                new SqlParameter("@Amount",transaction.Amount),
+                new SqlParameter("@Description",transaction.Description)
 
+            };
+            var query = "EXEC [AddNewTransaction]  @Code,@TransactionDate,@Amount,@Description";
+            _dataContext.Database.ExecuteSqlRaw(query, parameters);
+        }
 
     }
 }

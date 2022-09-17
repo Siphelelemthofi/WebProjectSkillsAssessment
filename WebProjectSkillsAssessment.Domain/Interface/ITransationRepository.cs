@@ -9,6 +9,8 @@ namespace WebProjectSkillsAssessment.Bussiness.Interface
 {
     public interface ITransationRepository
     {
-        List<Transaction> GetTransactionsByAccountCodeOrId(int AccountCode);
+        List<GetTransactionsByAccountCodeOrId> GetTransactionsByAccountCodeOrId(int AccountCode);
+        void AddNewTransaction(Transaction transaction);
+        Transaction GetTransactionDetailsCodeOrId(int AccountCode);
     }
 }

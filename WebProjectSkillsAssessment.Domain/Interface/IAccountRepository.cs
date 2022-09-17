@@ -13,5 +13,6 @@ namespace WebProjectSkillsAssessment.Bussiness.Interface
         List<Account> GetPersonAccountByCodeOrId(int Code);
         Account GetAccountDetails(string AccountNumber);
         void UpdateAccountInformation(Transaction transaction);
+        bool CheckAccountNumber(string AccountNumber);
     }
 }

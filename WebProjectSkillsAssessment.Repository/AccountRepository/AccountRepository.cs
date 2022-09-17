@@ -62,5 +62,24 @@ namespace WebProjectSkillsAssessment.Repository.AccountRepository
             var query = "EXEC [UpdateAccountInformation] @Code,@TransactionDate,@CaptureDate,@Money";
             _dataContext.Database.ExecuteSqlRaw(query, parameter);
         }
+        public List<GetAllAccountNumber> GetAllAccountNumber()
+        {
+            var query = "EXEC [GetAllAccountNumber]";
+            var returnResult = _dataContext.Set<GetAllAccountNumber>().FromSqlRaw(query);
+            return returnResult.ToList();
+        }
+        public bool CheckAccountNumber(string AccountNumber)
+        {
+            int CheckIfAccountExist = (from getAllAccounts in GetAllAccountNumber().Where(a => a.AccountNumber.Equals(AccountNumber)) select getAllAccounts).Count();
+            if(CheckIfAccountExist > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+           
+        }
     }
 }

@@ -17,11 +17,10 @@
                         Search by ID Number,Surname and Account Number: @Html.TextBox("SearchString")
                         <input type="submit"  value="Search" />
                             <div class="position-absolute top-right">
-                            <button type="button"   class="btn btn-primary">Add Person</button>
+                                <a href="@Url.ActionLink("AddNewPerson", "Persons")" class="btn btn-primary">Add Person<i class="fa fa-dot-circle"></i></a>
                             </div>
                     </p>
                 }
-                   
             </div>
         </div>
     </div>
@@ -46,7 +45,9 @@
                         <td>@Html.DisplayFor(modelItem =>item.Surname)</td>
                         <td>@Html.DisplayFor(modelItem =>item.Id_number)</td>
                         <td>
-                            <a asp-controller="/Persons" asp-action="GetPersonDetailsByIdOrCode" asp-route-IdORCode="@item.Code">View Details</a>
+                            <a asp-controller="/Persons" asp-action="GetPersonDetailsByIdOrCode" asp-route-IdORCode="@item.Code">|Details|</a>
+                            <a asp-controller="/Persons" asp-action="GetPersonDetailsByIdOrCode" asp-route-IdORCode="@item.Code">|Edit|</a>
+                            <a asp-controller="/Persons" asp-action="GetPersonDetailsByIdOrCode" asp-route-IdORCode="@item.Code">|Delete|</a>
                         </td>
                        
                     </tr>

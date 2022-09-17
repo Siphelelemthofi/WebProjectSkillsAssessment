@@ -1,5 +1,5 @@
 ﻿@using WebProjectSkillsAssessment.Domain.Entities
-@model List<Transaction>
+@model List<GetTransactionsByAccountCodeOrId>
 
 <style>
     .top-right {
@@ -9,6 +9,25 @@
 </style>
 <div class="jumbotron jumbotron-fluid">
     <p>
+        <div class="form-group row">
+            <div class="col-md-12">
+                <div class="input-group">
+                    @using (Html.BeginForm())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <p>
+                                <div class="position-absolute top-right">
+                                    <a asp-controller="/Transactions" asp-action="AddTransactions" asp-route-Code="@item.accountCode" class="btn btn-primary">Add Transactions<i class="fa fa-dot-circle"></i></a>
+                                </div>
+                            </p>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
         <table class=table>
             <thead class="table-primary">
                 <tr>
@@ -27,7 +46,8 @@
                         <td>@Html.DisplayFor(modelItem =>item.TransactionDate)</td>
                         <td>@Html.DisplayFor(modelItem =>item.CaptureDate)</td>
                         <td>
-                            <a asp-controller="/Accounts" asp-action="GetAccountDetailsByAccountNumber" asp-route-AccountCode="@item.Code" class="btn bg-gradient-primary mt-2 me-2">Edit</a>
+                            <a asp-controller="/Transactions" asp-action="GetTransactionDetailsByAccountCodeOrId" asp-route-AccountCode="@item.Code" class="btn bg-gradient-primary mt-2 me-2">View Details</a>
+                            <a asp-controller="/Transactions" asp-action="GetTransactionDetailsByAccountCodeOrId" asp-route-AccountCode="@item.Code" class="btn bg-gradient-primary mt-2 me-2">Edit Details</a>
                         </td>
                     </tr>
                 }

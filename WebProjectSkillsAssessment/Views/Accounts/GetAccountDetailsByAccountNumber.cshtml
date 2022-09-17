@@ -1,7 +1,17 @@
 ﻿@using WebProjectSkillsAssessment.Domain.Entities
 @model Account
+<style>
+    .top-right {
+        top: 3%;
+        right: 3%;
+    }
+</style>
 <div class="col-lg-9 col-12 mx-auto">
     <div class="card card-body mt-4">
+        <div class="position-absolute top-right">
+
+            <a asp-controller="/Transactions" asp-action="AddTransactions" asp-route-Code="@Model.Code" class="btn btn-primary">Add Transations</a>
+        </div>
         <h4 class="mb-0">Account Details</h4>
         <hr class="horizontal dark my-2">
         <div class="form-group">
@@ -24,7 +34,7 @@
         </div>
         <div class="d-flex justify-content-start mt-4">
             <div class="d-flex justify-content-start mt-4">
-                <a asp-controller="/Transactions" asp-action="GetTransactionsListByIdOrCode" asp-route-AccountCode="@Model.Code" class="btn btn-primary">View Accounts</a>
+                <a asp-controller="/Transactions" asp-action="GetTransactionsListByIdOrCode" asp-route-AccountCode="@Model.Code" class="btn btn-primary">View Transactions</a>
             </div>
         </div>
     </div>
