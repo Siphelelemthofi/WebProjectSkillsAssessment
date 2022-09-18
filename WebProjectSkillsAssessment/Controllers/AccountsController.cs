@@ -62,6 +62,10 @@ namespace WebProjectSkillsAssessment.Controllers
             }
             return RedirectToAction("GetAccountList", "Accounts", new { Code  = account.Code });
         }
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
     }
 }
 

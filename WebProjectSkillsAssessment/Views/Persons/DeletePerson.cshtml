@@ -1,0 +1,44 @@
+﻿@using WebProjectSkillsAssessment.Domain.Entities
+@model Person
+<style>
+    .top-right {
+        top: 3%;
+        right: 3%;
+    }
+</style>
+  <form method="post" id="form">
+<div class="col-lg-9 col-12 mx-auto">
+    <div class="card card-body mt-4">
+        <div class="position-absolute top-right">
+        </div>
+        <h4 class="mb-0">Person Details</h4>
+        <hr class="horizontal dark my-2">
+        <div class="form-group">
+               
+
+                    @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-3"><strong>First Name</strong></div>
+                <div class="col-9">@Model.Name</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-3"><strong>Last Name</strong></div>
+                <div class="col-9">@Model.Surname</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-3"><strong>Id Number</strong></div>
+                <div class="col-9">@Model.Id_number</div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-start mt-4">
+            <button class="btn btn-danger" asp-controller="/Persons" asp-action="DeletePersonConfirm" asp-route-IdORCode="@Model.Code">Delete</button>
+        </div>
+        
+    </div>
+    
+</div>
+</form>

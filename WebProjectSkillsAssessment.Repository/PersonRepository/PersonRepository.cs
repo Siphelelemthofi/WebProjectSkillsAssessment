@@ -54,21 +54,12 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
         }
         public void DeleteUserWithNoAccountOrAccountClosed(int Code)
         {
-            try
-            {
-
-
                 object[] parameter =
                 {
                 new SqlParameter("@Code",Code)
             };
                 var query = "EXEC [DeletePerson] @Code";
                 _dataContext.Database.ExecuteSqlRaw(query, parameter);
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
         }
         public void UpdatePersonInformation(Person Person)
         {
@@ -117,6 +108,17 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
             {
                 return false;
             }
+        }
+        public List<Person> GetPersonListWithNoAccounts(string SearchString)
+        {
+            object[] parameters =
+            {
+                new SqlParameter("@SearchString",string.IsNullOrEmpty(SearchString)?(object)DBNull.Value:(object) SearchString)
+            };
+            var query = "EXEC [GetAllPersonWithNoAccounts] @SearchString";
+            var returnResult = _dataContext.Set<Person>().FromSqlRaw(query, parameters);
+            return returnResult.ToList();
+
         }
     }
 }

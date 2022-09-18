@@ -43,8 +43,10 @@
                         <td>@Html.DisplayFor(modelItem =>item.Code)</td>
                         <td>@Html.DisplayFor(modelItem =>item.AccountNumber)</td>
                         <td>
-                            <a asp-controller="/Accounts" asp-action="GetAccountDetailsByAccountNumber" asp-route-AccountNumber="@item.AccountNumber" class="btn bg-gradient-primary mt-2 me-2">View Details</a>
-                            <a asp-controller="/Accounts" asp-action="UpdateAccountInformation" asp-route-AccountNumber="@item.AccountNumber" class="btn bg-gradient-primary mt-2 me-2">Edit</a>
+                            <a asp-controller="/Accounts" asp-action="GetAccountDetailsByAccountNumber" asp-route-AccountNumber="@item.AccountNumber" class="btn btn-link btn-rounded btn-sm fw-bold"
+                           data-mdb-ripple-color="dark">View Details</a>
+                            <a asp-controller="/Accounts" asp-action="UpdateAccountInformation" asp-route-AccountNumber="@item.AccountNumber" class="btn btn-link btn-rounded btn-sm fw-bold"
+                           data-mdb-ripple-color="dark">Edit</a>
 
                         </td>
                     </tr>

@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Security.Principal;
 using WebProjectSkillsAssessment.Bussiness.Interface;
 using WebProjectSkillsAssessment.Domain.Entities;
 using WebProjectSkillsAssessment.Domain.Manager;
-using WebProjectSkillsAssessment.ViewModel.PersonViewModel;
+ 
 
 namespace WebProjectSkillsAssessment.Controllers
 {
@@ -30,7 +31,7 @@ namespace WebProjectSkillsAssessment.Controllers
             {
                if(isUserValid)
                 {
-                    return Redirect("GetListOfPersons");
+                    return RedirectToAction("Dashboard", "Accounts");
                 }
                 else
                 {
@@ -38,7 +39,7 @@ namespace WebProjectSkillsAssessment.Controllers
                     return View();
                 }
             }
-            return View();
+            return RedirectToAction("Dashboard", "Accounts");
         }
         public ActionResult GetListOfPersons(int? PageNumber, string SearchString)
         {
@@ -46,6 +47,14 @@ namespace WebProjectSkillsAssessment.Controllers
             var getListOfPeople = _personRepository.GetPersonList(SearchString);
             return View(PaginationList<Person>.Create(getListOfPeople,
                 PageNumber ?? 1, pageSize));
+        }
+        public ActionResult GetListOfPeopleWithNoAccount(int? PageNumber, string SearchString)
+        {
+            int pageSize = 10;
+            var getListOfPeople = _personRepository.GetPersonListWithNoAccounts(SearchString);
+            return View(PaginationList<Person>.Create(getListOfPeople,
+                PageNumber ?? 1, pageSize));
+            
         }
         public ActionResult AddNewPerson()
         {
@@ -78,8 +87,15 @@ namespace WebProjectSkillsAssessment.Controllers
         }
         public ActionResult DeletePerson(int IdORCode)
         {
-             _personRepository.DeleteUserWithNoAccountOrAccountClosed(IdORCode);
-            return View();
+            var GetPersonDetailsByIdOrCode = _personRepository.GetPersonByCodeOrId(IdORCode);
+            return View(GetPersonDetailsByIdOrCode);
+        }
+        [HttpPost]
+        public ActionResult DeletePersonConfirm(int IdORCode)
+        {
+            
+            _personRepository.DeleteUserWithNoAccountOrAccountClosed(IdORCode);
+            return Redirect("GetListOfPeopleWithNoAccount");
         }
         [HttpGet]
         public ActionResult UpdateUserInformation(int IdORCode)

@@ -49,9 +49,10 @@
                         <td>@Html.DisplayFor(modelItem =>item.Surname)</td>
                         <td>@Html.DisplayFor(modelItem =>item.Id_number)</td>
                         <td>
-                            <a asp-controller="/Persons" asp-action="GetPersonDetailsByIdOrCode" asp-route-IdORCode="@item.Code">|Details|</a>
-                            <a asp-controller="/Persons" asp-action="UpdateUserInformation" asp-route-IdORCode="@item.Code">|Edit|</a>
-                            <a asp-controller="/Persons" asp-action="DeletePerson" asp-route-IdORCode="@item.Code">|Delete|</a>
+                                    <a asp-controller="/Persons" asp-action="GetPersonDetailsByIdOrCode" class="badge badge-primary rounded-pill d-inline"
+                data-mdb-ripple-color="dark" asp-route-IdORCode="@item.Code">Details</a>
+                                    <a asp-controller="/Persons" asp-action="UpdateUserInformation" class="badge badge-warning rounded-pill d-inline"
+                                   data-mdb-ripple-color="dark" asp-route-IdORCode="@item.Code">Edit</a>
                         </td>
                        
                     </tr>
@@ -68,6 +69,8 @@
     var preDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 } 
+<br />
+<br />
 <a asp-action="GetListOfPersons" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-outline-dark @preDisabled">Previous </a>
 <a asp-action="GetListOfPersons" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-outline-dark @nextDisabled">Next</a>
 

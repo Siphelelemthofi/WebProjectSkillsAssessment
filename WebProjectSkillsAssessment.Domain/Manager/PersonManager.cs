@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WebProjectSkillsAssessment.Bussiness;
 using WebProjectSkillsAssessment.Bussiness.Interface;
 using WebProjectSkillsAssessment.Domain.Entities;
-using WebProjectSkillsAssessment.ViewModel.PersonViewModel;
+ 
 
 namespace WebProjectSkillsAssessment.Domain.Manager
 {

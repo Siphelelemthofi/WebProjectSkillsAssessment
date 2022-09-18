@@ -17,5 +17,6 @@ namespace WebProjectSkillsAssessment.Bussiness.Interface
         Person GetPersonByCodeOrId(int Code);
         List<GetAllIdNumberForPersons> GetAllIdNumber();
         bool CheckIfIdNumberExist(string IdNumber);
+        List<Person> GetPersonListWithNoAccounts(string SearchString);
     }
 }
