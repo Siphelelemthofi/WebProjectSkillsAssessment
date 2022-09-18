@@ -1,32 +1,32 @@
 ﻿@using WebProjectSkillsAssessment.Domain.Entities
 @model List<Account>
 <style>
-/*    .top-right {
-        top: -3%;
-        right:-3%;
-    }*/
+    .top-right {
+        top: 0;
+        right: 0;
+    }
 </style>
 <div class="jumbotron jumbotron-fluid">
     <p>
         <div class="form-group row">
             <div class="col-md-12">
                 <div class="input-group">
-                   
-                        <p>
-                            <div class="position-absolute top-right">
-                               @foreach (var item in Model)
-                {
+                    @using (Html.BeginForm())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <p>
                                 <div class="position-absolute top-right">
                                     <a asp-controller="/Accounts" asp-action="AddNewPersonAccount" asp-route-Code="@item.Code" class="btn btn-primary">add Accounts</a>
-
-                            </div>
-                }
-                            </div>
-                        </p>
-                     
+                                </div>
+                            </p>
+                        }
+                    }
                 </div>
             </div>
         </div>
+        <br />
+        <br />
         <table class=table>
             <thead class="table-primary">
                 <tr>
@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                 
+
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -44,6 +44,8 @@
                         <td>@Html.DisplayFor(modelItem =>item.AccountNumber)</td>
                         <td>
                             <a asp-controller="/Accounts" asp-action="GetAccountDetailsByAccountNumber" asp-route-AccountNumber="@item.AccountNumber" class="btn bg-gradient-primary mt-2 me-2">View Details</a>
+                            <a asp-controller="/Accounts" asp-action="UpdateAccountInformation" asp-route-AccountNumber="@item.AccountNumber" class="btn bg-gradient-primary mt-2 me-2">Edit</a>
+
                         </td>
                     </tr>
                 }

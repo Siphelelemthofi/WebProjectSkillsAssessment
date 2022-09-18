@@ -6,6 +6,10 @@
         right: 0;
     }
 </style>
+<br />
+<br />
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
 <div class="jumbotron jumbotron-fluid">
     <p> 
     <div class="form-group row">
@@ -46,8 +50,8 @@
                         <td>@Html.DisplayFor(modelItem =>item.Id_number)</td>
                         <td>
                             <a asp-controller="/Persons" asp-action="GetPersonDetailsByIdOrCode" asp-route-IdORCode="@item.Code">|Details|</a>
-                            <a asp-controller="/Persons" asp-action="GetPersonDetailsByIdOrCode" asp-route-IdORCode="@item.Code">|Edit|</a>
-                            <a asp-controller="/Persons" asp-action="GetPersonDetailsByIdOrCode" asp-route-IdORCode="@item.Code">|Delete|</a>
+                            <a asp-controller="/Persons" asp-action="UpdateUserInformation" asp-route-IdORCode="@item.Code">|Edit|</a>
+                            <a asp-controller="/Persons" asp-action="DeletePerson" asp-route-IdORCode="@item.Code">|Delete|</a>
                         </td>
                        
                     </tr>
@@ -58,6 +62,8 @@
        
     </p>
     </div>
+    </div>
+</div>
 @{
     var preDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";

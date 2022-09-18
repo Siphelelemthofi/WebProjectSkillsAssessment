@@ -11,7 +11,7 @@ namespace WebProjectSkillsAssessment.Domain.Entities
     {
         [Key]
         public int Code { get; set; }
-        public int accountCode { get; set; }
+        public int AccountCode { get; set; }
         [Required]
         public DateTime TransactionDate { get; set; }
         public DateTime CaptureDate { get; set; }

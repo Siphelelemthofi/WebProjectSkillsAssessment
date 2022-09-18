@@ -9,9 +9,10 @@ namespace WebProjectSkillsAssessment.Bussiness.Interface
 {
     public interface IPersonRepository
     {
+        bool isUserValidToLogin(UserLogin userLogin);
         List<Person> GetPersonList(string SearchString);
         void AddNewPerson(AddNewPerson  addNewPerson);
-        void UpdatePersonInformation(Person person);
+        void UpdatePersonInformation(Person Person);
         void DeleteUserWithNoAccountOrAccountClosed(int Code);
         Person GetPersonByCodeOrId(int Code);
         List<GetAllIdNumberForPersons> GetAllIdNumber();

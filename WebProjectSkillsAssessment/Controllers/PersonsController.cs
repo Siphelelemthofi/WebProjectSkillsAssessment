@@ -8,20 +8,36 @@ namespace WebProjectSkillsAssessment.Controllers
 {
     public class PersonsController : Controller
     {
-        public string IdNumber { get; set; } = string.Empty;
+      
         private readonly IPersonRepository _personRepository;
-        private readonly ValidationsManager _validationsManager;
-        public PersonsController(IPersonRepository personRepository, ValidationsManager validationsManager)
+        public PersonsController(IPersonRepository personRepository)
         {
             _personRepository = personRepository;
-            _validationsManager = validationsManager;   
         }
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Login()
+        public ActionResult Login()
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(UserLogin userLogin)
+        {
+            var isUserValid = _personRepository.isUserValidToLogin(userLogin);
+            if (ModelState.IsValid)
+            {
+               if(isUserValid)
+                {
+                    return Redirect("GetListOfPersons");
+                }
+                else
+                {
+                    ViewBag.IsValidMessage = "Incorrect Details please try again";
+                    return View();
+                }
+            }
             return View();
         }
         public ActionResult GetListOfPersons(int? PageNumber, string SearchString)
@@ -60,10 +76,25 @@ namespace WebProjectSkillsAssessment.Controllers
             var GetPersonDetailsByIdOrCode =_personRepository.GetPersonByCodeOrId(IdORCode);
             return View(GetPersonDetailsByIdOrCode);
         }
-        public ActionResult DeletePerson(int Code)
+        public ActionResult DeletePerson(int IdORCode)
         {
-             _personRepository.DeleteUserWithNoAccountOrAccountClosed(Code);
+             _personRepository.DeleteUserWithNoAccountOrAccountClosed(IdORCode);
             return View();
+        }
+        [HttpGet]
+        public ActionResult UpdateUserInformation(int IdORCode)
+        {
+            var GetPersonDetailsByIdOrCode = _personRepository.GetPersonByCodeOrId(IdORCode);
+            return View(GetPersonDetailsByIdOrCode);
+        }
+        [HttpPost]
+        public ActionResult UpdateUserInformation(Person Person)
+        {
+            if (ModelState.IsValid)
+            {
+                _personRepository.UpdatePersonInformation(Person);
+            }
+            return Redirect("GetListOfPersons");
         }
     }
 }

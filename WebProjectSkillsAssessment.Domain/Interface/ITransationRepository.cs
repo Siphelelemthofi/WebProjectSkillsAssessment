@@ -12,5 +12,6 @@ namespace WebProjectSkillsAssessment.Bussiness.Interface
         List<GetTransactionsByAccountCodeOrId> GetTransactionsByAccountCodeOrId(int AccountCode);
         void AddNewTransaction(Transaction transaction);
         Transaction GetTransactionDetailsCodeOrId(int AccountCode);
+        void UpdateTransactionInformation(Transaction transaction);
     }
 }

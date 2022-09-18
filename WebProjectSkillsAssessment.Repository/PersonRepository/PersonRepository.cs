@@ -54,20 +54,28 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
         }
         public void DeleteUserWithNoAccountOrAccountClosed(int Code)
         {
-            object[] parameter =
+            try
             {
+
+
+                object[] parameter =
+                {
                 new SqlParameter("@Code",Code)
             };
                 var query = "EXEC [DeletePerson] @Code";
-            _dataContext.Database.ExecuteSqlRaw(query, parameter);
+                _dataContext.Database.ExecuteSqlRaw(query, parameter);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
-        public void UpdatePersonInformation(Person person)
+        public void UpdatePersonInformation(Person Person)
         {
             object[] parameter = {
-            new SqlParameter("@Code",person.Code),
-            new SqlParameter("@Name",person.Name),
-            new SqlParameter("@Surname",person.Surname)
-          
+            new SqlParameter("@Code",Person.Code),
+            new SqlParameter("@Name",Person.Name),
+            new SqlParameter("@Surname",Person.Surname)
 
             };
             var query = "EXEC [UpdatepersonInformation] @Code,@Name,@Surname";
@@ -83,6 +91,25 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
         {
             var checkIdNumber = (from CountIdNumber in GetAllIdNumber().Where(s => s.Id_number.Equals(IdNumber)) select CountIdNumber).Count();
             if(checkIdNumber > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public List<UserLogin> GetUserLoginDetails()
+        {
+            var query = "EXEC [UserLogin]";
+            var returnResult = _dataContext.Set<UserLogin>().FromSqlRaw(query);
+            return returnResult.ToList();
+        }
+        public bool isUserValidToLogin(UserLogin userLogin)
+        {
+            var GetUserLogin = (from getuser in GetUserLoginDetails().Select(s=>s.UserName.Equals(userLogin.UserName) && s.UserPassword.Equals(userLogin.UserPassword))select getuser).FirstOrDefault();
+
+            if(GetUserLogin)
             {
                 return true;
             }

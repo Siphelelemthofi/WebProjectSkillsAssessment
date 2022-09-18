@@ -12,7 +12,8 @@ namespace WebProjectSkillsAssessment.Bussiness.Interface
         void AddNewAccount(Account account);
         List<Account> GetPersonAccountByCodeOrId(int Code);
         Account GetAccountDetails(string AccountNumber);
-        void UpdateAccountInformation(Transaction transaction);
+        void UpdateAccountInformation(Account account);
         bool CheckAccountNumber(string AccountNumber);
+        decimal GetCurrentAccountBalance(int Code);
     }
 }

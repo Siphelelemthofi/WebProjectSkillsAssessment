@@ -51,6 +51,19 @@ namespace WebProjectSkillsAssessment.Repository.TransactionRepository
             var query = "EXEC [AddNewTransaction]  @Code,@TransactionDate,@Amount,@Description";
             _dataContext.Database.ExecuteSqlRaw(query, parameters);
         }
+        public void UpdateTransactionInformation(Transaction  transaction)
+        {
+            object[] parameter = {
+              
+            new SqlParameter("@Code",transaction.Code),
+            new SqlParameter("@AccountCode",transaction.AccountCode),
+            new SqlParameter("@TransactionDate",transaction.TransactionDate),
+            new SqlParameter("@Amount",transaction.Amount),
+            new SqlParameter("@Description",transaction.Description),
 
+            };
+            var query = "EXEC [UpdateTransactionsInformationByCode] @Code,@AccountCode,@TransactionDate,@Amount,@Description";
+            _dataContext.Database.ExecuteSqlRaw(query, parameter);
+        }
     }
 }

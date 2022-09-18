@@ -18,5 +18,8 @@ namespace WebProjectSkillsAssessment.Repository.Data
         public DbSet<GetAllAccountNumber> getAllAccountNumbers { get; set; }
 
         public DbSet<GetTransactionsByAccountCodeOrId>  getTransactionsByAccountCodeOrIds { get; set; }
+
+        public DbSet<UpdateUserInformation> updateUserInformation { get; set; }
+        public DbSet<UserLogin> userLogins { get; set; }    
     }
 }

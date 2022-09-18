@@ -47,5 +47,21 @@ namespace WebProjectSkillsAssessment.Controllers
             }
             return Redirect("GetAccountList");
         }
+        [HttpGet]
+        public ActionResult UpdateAccountInformation(string AccountNumber)
+        {
+            var getAccountDetails = _accountRepository.GetAccountDetails(AccountNumber);
+            return View(getAccountDetails);
+        }
+        [HttpPost]
+        public ActionResult UpdateAccountInformation(Account account)
+        {
+            if(ModelState.IsValid)
+            {
+                _accountRepository.UpdateAccountInformation(account);
+            }
+            return RedirectToAction("GetAccountList", "Accounts", new { Code  = account.Code });
+        }
     }
 }
+

@@ -7,9 +7,11 @@ namespace WebProjectSkillsAssessment.Controllers
     public class TransactionsController : Controller
     {
         private readonly ITransationRepository _transationRepository;
-        public TransactionsController(ITransationRepository transationRepository)
+        private readonly IAccountRepository _accountRepository;
+        public TransactionsController(ITransationRepository transationRepository, IAccountRepository accountRepository)
         {
             _transationRepository = transationRepository;
+            _accountRepository = accountRepository; 
         }
         public IActionResult Index()
         {
@@ -32,7 +34,8 @@ namespace WebProjectSkillsAssessment.Controllers
         [HttpPost]
         public IActionResult AddTransactions(Transaction transaction)
         {
-            if(ModelState.IsValid)
+            decimal CheckBalance = _accountRepository.GetCurrentAccountBalance(transaction.Code);
+            if (ModelState.IsValid)
             {
                 if(transaction.TransactionDate > DateTime.Now)
                 {
@@ -43,8 +46,15 @@ namespace WebProjectSkillsAssessment.Controllers
                  {
                     ViewBag.CheckAmount = "The transaction amount can never be zero ";
                     return View();
+                 }
+                if (transaction.Description == "Debit")
+                {
+                    if (transaction.Amount > CheckBalance)
+                    {
+                        ViewBag.Balance = "you cannot do Debit Transaction with amount More than current balance";
+                        return View();
+                    }
                 }
-
                 else
                 {
                     _transationRepository.AddNewTransaction(transaction);
@@ -52,13 +62,32 @@ namespace WebProjectSkillsAssessment.Controllers
             }
             return RedirectToAction("Index");
         }
-        public IActionResult UpdateTransactions()
+        [HttpGet]
+        public IActionResult UpdateTransactions(int Code)
         {
+            var getTransactionList = _transationRepository.GetTransactionDetailsCodeOrId(Code);
+            return View(getTransactionList);
+        }
+        [HttpPost]
+        public IActionResult UpdateTransactions(Transaction transaction)
+        {
+            decimal CheckBalance = _accountRepository.GetCurrentAccountBalance(transaction.Code);
             if(ModelState.IsValid)
             {
-
+                if (transaction.Description == "Debit")
+                {
+                    if (transaction.Amount > CheckBalance)
+                    {
+                        ViewBag.Balance = "you cannot do Debit Transaction with amount More than current balance";
+                        return View();
+                    }
+                }
+                else
+                {
+                    _transationRepository.UpdateTransactionInformation(transaction);
+                }
             }
-            return RedirectToAction("Index");   
+            return RedirectToAction("GetTransactionsListByIdOrCode","Transactions", new { AccountCode  = transaction.AccountCode});   
         }
     }
 }

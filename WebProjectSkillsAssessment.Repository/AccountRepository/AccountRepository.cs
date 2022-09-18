@@ -50,16 +50,15 @@ namespace WebProjectSkillsAssessment.Repository.AccountRepository
              var GetAccountDetails =_dataContext.Set<Account>().FromSqlRaw(query, parameters).ToList();
             return GetAccountDetails.FirstOrDefault();
         }
-        public void UpdateAccountInformation(Transaction transaction)
+        public void UpdateAccountInformation(Account account)
         {
             object[] parameter = {
-            new SqlParameter("@Code",transaction.Code),
-            new SqlParameter("@TransactionDate",transaction.TransactionDate),
-            new SqlParameter("@CaptureDate",transaction.CaptureDate),
-            new SqlParameter("@Money",transaction.Amount),
+            new SqlParameter("@Code",account.Code),
+            new SqlParameter("@AccountNumber",account.AccountNumber),
+            new SqlParameter("@OutstandingAmount",account.OutstandingAmount),
 
             };
-            var query = "EXEC [UpdateAccountInformation] @Code,@TransactionDate,@CaptureDate,@Money";
+            var query = "EXEC [UpdateAccountInformationByCode] @Code,@AccountNumber";
             _dataContext.Database.ExecuteSqlRaw(query, parameter);
         }
         public List<GetAllAccountNumber> GetAllAccountNumber()
@@ -79,7 +78,13 @@ namespace WebProjectSkillsAssessment.Repository.AccountRepository
             {
                 return false;
             }
-           
+        
+        }
+        public decimal GetCurrentAccountBalance(int Code)
+        {
+             decimal checkBalance =  (from getBalance in GetPersonAccountByCodeOrId(Code) where getBalance.Code.Equals(Code) select getBalance.OutstandingAmount).FirstOrDefault();
+             return checkBalance;
+            
         }
     }
 }

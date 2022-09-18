@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WebProjectSkillsAssessment.Domain.Entities
 {
-    public class Account
+    public class UpdateUserInformation  
     {
         [Key]
         public int Code { get; set; }
-        public int PersonCode { get; set; }
-        public string AccountNumber { get; set; } = string.Empty;   
-        public decimal  OutstandingAmount { get; set; }   
+        public string Name { get; set; } = string.Empty;
+        public string Surname { get; set; } = string.Empty;
+        public string Id_number { get; set; } = string.Empty;
     }
 }

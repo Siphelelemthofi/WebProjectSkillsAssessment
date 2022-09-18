@@ -18,7 +18,7 @@
                         {
                             <p>
                                 <div class="position-absolute top-right">
-                                    <a asp-controller="/Transactions" asp-action="AddTransactions" asp-route-Code="@item.accountCode" class="btn btn-primary">Add Transactions<i class="fa fa-dot-circle"></i></a>
+                                    <a asp-controller="/Transactions" asp-action="AddTransactions" asp-route-Code="@item.AccountCode" class="btn btn-primary">Add Transactions<i class="fa fa-dot-circle"></i></a>
                                 </div>
                             </p>
                         }
@@ -47,7 +47,7 @@
                         <td>@Html.DisplayFor(modelItem =>item.CaptureDate)</td>
                         <td>
                             <a asp-controller="/Transactions" asp-action="GetTransactionDetailsByAccountCodeOrId" asp-route-AccountCode="@item.Code" class="btn bg-gradient-primary mt-2 me-2">View Details</a>
-                            <a asp-controller="/Transactions" asp-action="GetTransactionDetailsByAccountCodeOrId" asp-route-AccountCode="@item.Code" class="btn bg-gradient-primary mt-2 me-2">Edit Details</a>
+                            <a asp-controller="/Transactions" asp-action="UpdateTransactions" asp-route-Code="@item.Code" class="btn bg-gradient-primary mt-2 me-2">Edit Details</a>
                         </td>
                     </tr>
                 }
