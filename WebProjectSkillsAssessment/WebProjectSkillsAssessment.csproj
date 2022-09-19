@@ -15,8 +15,4 @@
     <ProjectReference Include="..\WebProjectSkillsAssessment.Repository\WebProjectSkillsAssessment.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Script\" />
-  </ItemGroup>
-
 </Project>
