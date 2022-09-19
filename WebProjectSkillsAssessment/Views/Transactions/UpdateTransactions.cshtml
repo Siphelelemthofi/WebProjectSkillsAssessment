@@ -1,11 +1,15 @@
 ﻿@using WebProjectSkillsAssessment.Domain.Entities
 @model Transaction
+@{
+    double Amount = 0.00;
+    Amount = Convert.ToDouble(Model.Amount);
+}
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
         <li class="breadcrumb-item text-sm"><i class="opacity-5 text-white fa fa-home"></i></li>
-        <li class="breadcrumb-item text-sm active text-white" aria-current="page">Update Person Information</li>
+        <li class="breadcrumb-item text-sm active text-white" aria-current="page">Update Transaction Information</li>
     </ol>
-    <h6 class="font-weight-bolder mb-0">Update Person Information</h6>
+    <h6 class="font-weight-bolder mb-0">Update Transactions Information</h6>
 </nav>
 
 <div class="container-fluid py-4">
@@ -13,7 +17,7 @@
     <div class="row">
         <div class="col-lg-9 col-12 mx-auto">
             <div class="card card-body mt-4">
-                <h4 class="mb-0">Update Person Information</h4>
+                <h4 class="mb-0">Update Transactions Information</h4>
                 <hr class="horizontal dark my-2">
                 <form method="post" id="form">
 
@@ -26,10 +30,10 @@
                         @Html.ValidationMessageFor(model => model.TransactionDate, "", new { @class = "text-danger" })
                     </div>
 
-
+                  
                     <div class="form-group">
                         @Html.LabelFor(model => model.Amount)
-                        <input asp-for="@Model.Amount" type="text" class="form-control" />
+                        <input asp-for="@Amount" type="text" class="form-control" />
                         @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
                     </div>
 
@@ -46,7 +50,6 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <p style="color:red;">
                             @Html.Label("",Convert.ToString((string) ViewBag.Balance))
-                        
                         </p>
                     </div>
                     <div class="d-flex justify-content-start mt-4">

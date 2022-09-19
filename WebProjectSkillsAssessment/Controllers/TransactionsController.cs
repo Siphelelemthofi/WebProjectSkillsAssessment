@@ -55,12 +55,9 @@ namespace WebProjectSkillsAssessment.Controllers
                         return View();
                     }
                 }
-                else
-                {
                     _transationRepository.AddNewTransaction(transaction);
-                }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("GetTransactionsListByIdOrCode", "Transactions", new { AccountCode = transaction.Code });
         }
         [HttpGet]
         public IActionResult UpdateTransactions(int Code)

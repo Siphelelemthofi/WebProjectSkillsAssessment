@@ -45,7 +45,7 @@ namespace WebProjectSkillsAssessment.Controllers
                     _accountRepository.AddNewAccount(account);
                 }
             }
-            return Redirect("GetAccountList");
+            return RedirectToAction("GetAccountList", "Accounts", new { Code = account.Code });
         }
         [HttpGet]
         public ActionResult UpdateAccountInformation(string AccountNumber)

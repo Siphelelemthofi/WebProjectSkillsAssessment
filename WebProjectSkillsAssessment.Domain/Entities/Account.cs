@@ -13,7 +13,9 @@ namespace WebProjectSkillsAssessment.Domain.Entities
         [Key]
         public int Code { get; set; }
         public int PersonCode { get; set; }
-        public string AccountNumber { get; set; } = string.Empty;   
+        [Required]
+        public string AccountNumber { get; set; } = string.Empty;
+        [DisplayFormat(DataFormatString = "{0:0.0000}", ApplyFormatInEditMode = true)]
         public decimal  OutstandingAmount { get; set; }   
     }
 }

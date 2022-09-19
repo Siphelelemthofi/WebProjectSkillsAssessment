@@ -17,6 +17,7 @@
                 <hr class="horizontal dark my-2">
                 <form method="post" id="form">
                     @Html.AntiForgeryToken()
+                    
                     <div class="form-group">
                         @Html.LabelFor(model => model.TransactionDate)
                         <input asp-for="@Model.TransactionDate" type="datetime-local" class="form-control"/>

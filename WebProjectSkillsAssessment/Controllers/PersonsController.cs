@@ -24,6 +24,7 @@ namespace WebProjectSkillsAssessment.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(UserLogin userLogin)
         {
             var isUserValid = _personRepository.isUserValidToLogin(userLogin);
@@ -62,6 +63,7 @@ namespace WebProjectSkillsAssessment.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddNewPerson(AddNewPerson  addNewPerson)
         {
             var IdNumber = _personRepository.CheckIfIdNumberExist(addNewPerson.Id_number);
@@ -91,6 +93,7 @@ namespace WebProjectSkillsAssessment.Controllers
             return View(GetPersonDetailsByIdOrCode);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult DeletePersonConfirm(int IdORCode)
         {
             
@@ -104,6 +107,7 @@ namespace WebProjectSkillsAssessment.Controllers
             return View(GetPersonDetailsByIdOrCode);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UpdateUserInformation(Person Person)
         {
             if (ModelState.IsValid)

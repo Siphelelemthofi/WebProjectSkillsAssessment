@@ -16,6 +16,7 @@ namespace WebProjectSkillsAssessment.Domain.Entities
         public DateTime TransactionDate { get; set; }
         public DateTime CaptureDate { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:0.0000}", ApplyFormatInEditMode = true)]
         public decimal Amount { get; set; }
         [Required]
         public string Description { get; set; } = string.Empty;

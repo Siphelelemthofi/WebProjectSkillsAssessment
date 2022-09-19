@@ -17,7 +17,7 @@
                         {
                             <p>
                                 <div class="position-absolute top-right">
-                                    <a asp-controller="/Accounts" asp-action="AddNewPersonAccount" asp-route-Code="@item.Code" class="btn btn-primary">add Accounts</a>
+                                    <a asp-controller="/Accounts" asp-action="AddNewPersonAccount" asp-route-Code="@item.PersonCode" class="btn btn-primary">add Accounts</a>
                                 </div>
                             </p>
                         }
@@ -36,22 +36,24 @@
                 </tr>
             </thead>
             <tbody>
-
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem =>item.Code)</td>
-                        <td>@Html.DisplayFor(modelItem =>item.AccountNumber)</td>
-                        <td>
-                            <a asp-controller="/Accounts" asp-action="GetAccountDetailsByAccountNumber" asp-route-AccountNumber="@item.AccountNumber" class="btn btn-link btn-rounded btn-sm fw-bold"
+               
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem =>item.Code)</td>
+                            <td>@Html.DisplayFor(modelItem =>item.AccountNumber)</td>
+                            <td>
+                                <a asp-controller="/Accounts" asp-action="GetAccountDetailsByAccountNumber" asp-route-AccountNumber="@item.AccountNumber" class="btn btn-link btn-rounded btn-sm fw-bold"
                            data-mdb-ripple-color="dark">View Details</a>
-                            <a asp-controller="/Accounts" asp-action="UpdateAccountInformation" asp-route-AccountNumber="@item.AccountNumber" class="btn btn-link btn-rounded btn-sm fw-bold"
+                                <a asp-controller="/Accounts" asp-action="UpdateAccountInformation" asp-route-AccountNumber="@item.AccountNumber" class="btn btn-link btn-rounded btn-sm fw-bold"
                            data-mdb-ripple-color="dark">Edit</a>
 
-                        </td>
-                    </tr>
-                }
+                            </td>
+                        </tr>
+                    }
+                
             </tbody>
+           
         </table>
 
     </p>

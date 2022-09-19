@@ -23,11 +23,11 @@ namespace WebProjectSkillsAssessment.Repository.AccountRepository
         {
             object[] parameters =
             {
-                new SqlParameter("@Code",account.Code),
+                new SqlParameter("@PersonCode",account.Code),
                 new SqlParameter("@AccountNumber",account.AccountNumber)
                 
             };
-            var query = "EXEC [AddNewUserAccount]  @Code,@AccountNumber";
+            var query = "EXEC [AddNewUserAccount]  @PersonCode,@AccountNumber";
             _dataContext.Database.ExecuteSqlRaw(query, parameters);
         }
         public List<Account> GetPersonAccountByCodeOrId(int Code)
