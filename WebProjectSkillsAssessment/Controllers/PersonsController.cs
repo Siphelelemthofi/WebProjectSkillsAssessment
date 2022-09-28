@@ -77,9 +77,12 @@ namespace WebProjectSkillsAssessment.Controllers
             else
                 {
                     _personRepository.AddNewPerson(addNewPerson);
+                    return Redirect("GetListOfPersons");
                 }
+               
             }
-            return Redirect("GetListOfPersons");
+            return View();
+
         }
         [HttpGet]
         public ActionResult GetPersonDetailsByIdOrCode(int IdORCode)
