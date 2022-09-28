@@ -17,6 +17,7 @@ namespace WebProjectSkillsAssessment.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult GetTransactionsListByIdOrCode(int AccountCode)
         {
             var getTransactionList = _transationRepository.GetTransactionsByAccountCodeOrId(AccountCode);
@@ -32,6 +33,7 @@ namespace WebProjectSkillsAssessment.Controllers
             return View(getTransactionList);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddTransactions(Transaction transaction)
         {
             decimal CheckBalance = _accountRepository.GetCurrentAccountBalance(transaction.Code);
@@ -65,7 +67,8 @@ namespace WebProjectSkillsAssessment.Controllers
             var getTransactionList = _transationRepository.GetTransactionDetailsCodeOrId(Code);
             return View(getTransactionList);
         }
-        [HttpPost]
+        [HttpPut]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateTransactions(Transaction transaction)
         {
             decimal CheckBalance = _accountRepository.GetCurrentAccountBalance(transaction.Code);

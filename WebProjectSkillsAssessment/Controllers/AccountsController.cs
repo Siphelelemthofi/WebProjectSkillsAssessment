@@ -30,6 +30,7 @@ namespace WebProjectSkillsAssessment.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddNewPersonAccount(Account account)
         {
             var CheckAccountNumber = _accountRepository.CheckAccountNumber(account.AccountNumber);
@@ -53,7 +54,8 @@ namespace WebProjectSkillsAssessment.Controllers
             var getAccountDetails = _accountRepository.GetAccountDetails(AccountNumber);
             return View(getAccountDetails);
         }
-        [HttpPost]
+        [HttpPut]
+        [ValidateAntiForgeryToken]
         public ActionResult UpdateAccountInformation(Account account)
         {
             if(ModelState.IsValid)
