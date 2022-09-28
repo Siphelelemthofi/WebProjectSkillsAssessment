@@ -75,7 +75,7 @@ namespace WebProjectSkillsAssessment.Controllers
                     return View();
                 }
             else
-                {
+                {   
                     _personRepository.AddNewPerson(addNewPerson);
                     return Redirect("GetListOfPersons");
                 }
