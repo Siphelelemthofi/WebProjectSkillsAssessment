@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebProjectSkillsAssessment</title>
+    <title>@ViewData["Title"] - Manage Accounts</title>
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
           rel="stylesheet" />
@@ -18,28 +18,53 @@
 </head>
 <body>
     <header>
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- Container wrapper -->
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <!-- Toggle button -->
                 <button class="navbar-toggler"
                         type="button"
                         data-mdb-toggle="collapse"
-                        data-mdb-target="#navbarNavAltMarkup"
-                        aria-controls="navbarNavAltMarkup"
+                        data-mdb-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
                         aria-expanded="false"
                         aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        <a class="nav-link" href="#">About</a>
-                        <a class="nav-link" href="#">Contact</a>
-                        <a class="nav-link" href="/Persons/Login">Login</a>
-                    </div>
+
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Navbar brand -->
+                    <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                        <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+                             height="15"
+                             alt="MDB Logo"
+                             loading="lazy" />
+                    </a>
+                    <!-- Left links -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Person</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                    <!-- Left links -->
                 </div>
+             
+                <!-- Right elements -->
             </div>
+            <!-- Container wrapper -->
         </nav>
+        <!-- Navbar -->
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -49,7 +74,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - WebProjectSkillsAssessment - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - siphelelemthofi549@gmai.com - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <!-- MDB -->
