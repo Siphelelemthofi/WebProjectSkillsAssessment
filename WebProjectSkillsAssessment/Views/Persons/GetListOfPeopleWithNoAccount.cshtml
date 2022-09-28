@@ -17,13 +17,15 @@
                         <div class="input-group">
                             @using (Html.BeginForm())
                             {
-                                <p>
-                                    Search by ID Number,Surname and Account Number: @Html.TextBox("SearchString")
-                                    <input type="submit" value="Search" />
-                                    <div class="position-absolute top-right">
-                                        <a href="@Url.ActionLink("AddNewPerson", "Persons")" class="btn btn-primary">Add Person<i class="fa fa-dot-circle"></i></a>
+                                <div class="input-group">
+                                    <div class="form-outline">
+                                        <input type="search" id="form1" class="form-control" />
+                                        <label class="form-label" for="form1">Search</label>
                                     </div>
-                                </p>
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
                             }
                         </div>
                     </div>
