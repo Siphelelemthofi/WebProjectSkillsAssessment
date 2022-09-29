@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebProjectSkillsAssessment.Domain\WebProjectSkillsAssessment.Domain.csproj" />
+    <ProjectReference Include="..\WebProjectSkillsAssessment.Domain\ManagePeopleWithTheirAccounts.Domain.csproj" />
   </ItemGroup>
 
 </Project>

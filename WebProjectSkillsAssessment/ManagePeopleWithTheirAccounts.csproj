@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebProjectSkillsAssessment.Domain\WebProjectSkillsAssessment.Domain.csproj" />
-    <ProjectReference Include="..\WebProjectSkillsAssessment.Repository\WebProjectSkillsAssessment.Repository.csproj" />
+    <ProjectReference Include="..\WebProjectSkillsAssessment.Domain\ManagePeopleWithTheirAccounts.Domain.csproj" />
+    <ProjectReference Include="..\WebProjectSkillsAssessment.Repository\ManagePeopleWithTheirAccounts.Repository.csproj" />
   </ItemGroup>
 
 </Project>

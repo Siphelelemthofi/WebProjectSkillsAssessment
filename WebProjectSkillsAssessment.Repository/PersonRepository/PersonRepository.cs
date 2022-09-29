@@ -96,19 +96,7 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
             var returnResult = _dataContext.Set<UserLogin>().FromSqlRaw(query);
             return returnResult.ToList();
         }
-        public bool isUserValidToLogin(UserLogin userLogin)
-        {
-            var GetUserLogin = (from getuser in GetUserLoginDetails().Select(s=>s.UserName.Equals(userLogin.UserName) && s.UserPassword.Equals(userLogin.UserPassword))select getuser).FirstOrDefault();
-
-            if(GetUserLogin)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+ 
         public List<Person> GetPersonListWithNoAccounts(string SearchString)
         {
             object[] parameters =

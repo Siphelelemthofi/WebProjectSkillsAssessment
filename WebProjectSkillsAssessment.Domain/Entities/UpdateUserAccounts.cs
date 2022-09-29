@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WebProjectSkillsAssessment.Domain.Entities
 {
-    public class Account
+    public class UpdateUserAccounts
     {
         [Key]
         public int Code { get; set; }
@@ -17,7 +16,6 @@ namespace WebProjectSkillsAssessment.Domain.Entities
         [MaxLength(8)]
         [MinLength(8)]
         public string AccountNumber { get; set; } = string.Empty;
-        [DisplayFormat(DataFormatString = "{0:0.0000}", ApplyFormatInEditMode = true)]
-        public decimal  OutstandingAmount { get; set; }   
+
     }
 }

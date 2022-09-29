@@ -10,9 +10,9 @@
     <br/>
     <br/>
     <br/>
-<div class="card card-body mt-12"> 
-<div class="col-lg-9 col-12 mx-auto">
+<div class="card card-body mt-12">
     <div class="card card-body mt-4">
+ 
         <div class="position-absolute top-right">
 
             <a asp-controller="/Accounts" asp-action="AddNewPersonAccount" asp-route-Code="@Model.Code" class="btn btn-primary">Add Accounts</a>
@@ -37,12 +37,12 @@
                 <div class="col-9">@Model.Id_number</div>
             </div>
         </div>
-@*            <div class="d-flex justify-content-start mt-4">
+            <div class="d-flex justify-content-start mt-4">
                 <a asp-controller="/Accounts" asp-action="GetAccountList" asp-route-Code="@Model.Code" class="btn btn-primary">View Accounts</a>
-            </div>*@
+            </div>
     </div>
 
-     <div class="card card-body mt-4">
+   <div class="card card-body mt-4">
     <div class="row w-100">
   <table class="table align-middle mb-0 bg-white">
   <thead class="bg-light">
@@ -156,8 +156,6 @@
 </table>
   </div>
 </div>
-
-
 </div>
-</div>
- </div>
+
+ 

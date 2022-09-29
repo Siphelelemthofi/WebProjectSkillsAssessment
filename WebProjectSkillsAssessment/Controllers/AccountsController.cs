@@ -45,8 +45,9 @@ namespace WebProjectSkillsAssessment.Controllers
                 {
                     _accountRepository.AddNewAccount(account);
                 }
+                return RedirectToAction("GetAccountList", "Accounts", new { Code = account.Code });
             }
-            return RedirectToAction("GetAccountList", "Accounts", new { Code = account.Code });
+            return View(account);
         }
         [HttpGet]
         public ActionResult UpdateAccountInformation(string AccountNumber)
@@ -54,15 +55,18 @@ namespace WebProjectSkillsAssessment.Controllers
             var getAccountDetails = _accountRepository.GetAccountDetails(AccountNumber);
             return View(getAccountDetails);
         }
-        [HttpPut]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateAccountInformation(Account account)
         {
-            if(ModelState.IsValid)
+            string AccountNumber = string.Empty;
+            if (ModelState.IsValid)
             {
                 _accountRepository.UpdateAccountInformation(account);
+                return RedirectToAction("GetAccountList", "Accounts", new { Code = account.Code });
             }
-            return RedirectToAction("GetAccountList", "Accounts", new { Code  = account.Code });
+           
+            return View();
         }
         public ActionResult Dashboard()
         {

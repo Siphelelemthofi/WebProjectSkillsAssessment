@@ -19,29 +19,7 @@ namespace WebProjectSkillsAssessment.Controllers
         {
             return View();
         }
-        public ActionResult Login()
-        {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(UserLogin userLogin)
-        {
-            var isUserValid = _personRepository.isUserValidToLogin(userLogin);
-            if (ModelState.IsValid)
-            {
-               if(isUserValid)
-                {
-                    return RedirectToAction("Dashboard", "Accounts");
-                }
-                else
-                {
-                    ViewBag.IsValidMessage = "Incorrect Details please try again";
-                    return View();
-                }
-            }
-            return RedirectToAction("Dashboard", "Accounts");
-        }
+    
         public ActionResult GetListOfPersons(int? PageNumber, string SearchString)
         {
             int pageSize = 10;
@@ -81,8 +59,7 @@ namespace WebProjectSkillsAssessment.Controllers
                 }
                
             }
-            return View();
-
+            return View(addNewPerson);
         }
         [HttpGet]
         public ActionResult GetPersonDetailsByIdOrCode(int IdORCode)
@@ -116,8 +93,9 @@ namespace WebProjectSkillsAssessment.Controllers
             if (ModelState.IsValid)
             {
                 _personRepository.UpdatePersonInformation(Person);
+                return Redirect("GetListOfPersons");
             }
-            return Redirect("GetListOfPersons");
+            return View(Person);
         }
     }
 }

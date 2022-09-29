@@ -1,8 +1,7 @@
 ﻿@using WebProjectSkillsAssessment.Domain.Entities
  @model Account
-
-@{
-    double Amount = 0.00;
+ @{
+   double Amount = 0.00;
     Amount = Convert.ToDouble(Model.OutstandingAmount);
 }
 <nav aria-label="breadcrumb">
@@ -27,17 +26,17 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.AccountNumber)
-                        <input asp-for="@Model.AccountNumber" type="text" class="form-control"  />
+                        <input asp-for="@Model.AccountNumber" type="text" class="form-control"  id="AccountNumber" />
                         @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
                     </div>
-
+                    <div id="AccountErrorMessage"><text style="color:red">The length of Account Number Must Have 8 Digits</text></div>
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.OutstandingAmount)
-                        <input asp-for="@Amount" type="text" class="form-control" disabled />
+                        <input asp-for="@Model.OutstandingAmount" type="text" class="form-control" disabled id="OutstandingAmount" />
                         @Html.ValidationMessageFor(model => model.OutstandingAmount, "", new { @class = "text-danger" })
                     </div>
-
+                    <div><text>  </text></div>
                
 
                     <div class="form-group">
@@ -51,3 +50,10 @@
         </div>
     </div>
 </div>
+ 
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="~/script/validateupdateaccountinformation.js"></script>
+ 
+}
+ 

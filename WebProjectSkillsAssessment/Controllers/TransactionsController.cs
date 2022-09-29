@@ -44,12 +44,12 @@ namespace WebProjectSkillsAssessment.Controllers
                     ViewBag.isDateFuterDate = "The transaction date can never be in the future";
                     return View();  
                 }
-                  if(transaction.Amount == 0)
+               if(transaction.Amount < 1)
                  {
-                    ViewBag.CheckAmount = "The transaction amount can never be zero ";
+                    ViewBag.CheckAmount = "The transaction amount can never be zero";
                     return View();
                  }
-                if (transaction.Description == "Debit")
+               if (transaction.Description == "Debit")
                 {
                     if (transaction.Amount > CheckBalance)
                     {
@@ -58,8 +58,10 @@ namespace WebProjectSkillsAssessment.Controllers
                     }
                 }
                     _transationRepository.AddNewTransaction(transaction);
+                return RedirectToAction("GetTransactionsListByIdOrCode", "Transactions", new { AccountCode = transaction.Code });
             }
-            return RedirectToAction("GetTransactionsListByIdOrCode", "Transactions", new { AccountCode = transaction.Code });
+            return View(transaction);   
+           
         }
         [HttpGet]
         public IActionResult UpdateTransactions(int Code)
@@ -67,7 +69,7 @@ namespace WebProjectSkillsAssessment.Controllers
             var getTransactionList = _transationRepository.GetTransactionDetailsCodeOrId(Code);
             return View(getTransactionList);
         }
-        [HttpPut]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult UpdateTransactions(Transaction transaction)
         {
@@ -79,15 +81,17 @@ namespace WebProjectSkillsAssessment.Controllers
                     if (transaction.Amount > CheckBalance)
                     {
                         ViewBag.Balance = "you cannot do Debit Transaction with amount More than current balance";
-                        return View();
+                        return View(transaction);
                     }
                 }
                 else
                 {
                     _transationRepository.UpdateTransactionInformation(transaction);
+                    return RedirectToAction("GetTransactionsListByIdOrCode", "Transactions", new { AccountCode = transaction.AccountCode });
                 }
             }
-            return RedirectToAction("GetTransactionsListByIdOrCode","Transactions", new { AccountCode  = transaction.AccountCode});   
+            return View(transaction);   
+            
         }
     }
 }
