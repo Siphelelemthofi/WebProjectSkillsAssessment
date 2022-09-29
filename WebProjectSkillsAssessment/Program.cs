@@ -1,6 +1,7 @@
+using ManagePeopleWithTheirAccounts.Business.PersonBusiness;
 using Microsoft.EntityFrameworkCore;
 using WebProjectSkillsAssessment.Bussiness.Interface;
-using WebProjectSkillsAssessment.Domain.Manager;
+//using WebProjectSkillsAssessment.Domain.Manager;
 using WebProjectSkillsAssessment.Repository.AccountRepository;
 using WebProjectSkillsAssessment.Repository.Data;
 using WebProjectSkillsAssessment.Repository.PersonRepository;
@@ -14,7 +15,7 @@ builder.Services.AddDbContext<DataContext>(options=>options.UseSqlServer(builder
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<ITransationRepository, TransactionRepository>();
-builder.Services.AddScoped<ValidationsManager>();
+builder.Services.AddScoped<PersonBusiness>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

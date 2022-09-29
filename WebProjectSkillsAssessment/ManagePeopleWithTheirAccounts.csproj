@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ManagePeopleWithTheirAccounts.Business\ManagePeopleWithTheirAccounts.Business.csproj" />
     <ProjectReference Include="..\WebProjectSkillsAssessment.Domain\ManagePeopleWithTheirAccounts.Data.csproj" />
     <ProjectReference Include="..\WebProjectSkillsAssessment.Repository\ManagePeopleWithTheirAccounts.Repository.csproj" />
   </ItemGroup>
