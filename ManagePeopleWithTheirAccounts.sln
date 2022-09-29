@@ -8,13 +8,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagePeopleWithTheirAccoun
 		{92301D68-B28C-4300-9D75-E0EB7C0DAE4E} = {92301D68-B28C-4300-9D75-E0EB7C0DAE4E}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagePeopleWithTheirAccounts.Domain", "WebProjectSkillsAssessment.Domain\ManagePeopleWithTheirAccounts.Domain.csproj", "{268A8DC0-D55B-48A3-93E9-281305627C2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagePeopleWithTheirAccounts.Data", "WebProjectSkillsAssessment.Domain\ManagePeopleWithTheirAccounts.Data.csproj", "{268A8DC0-D55B-48A3-93E9-281305627C2E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagePeopleWithTheirAccounts.Repository", "WebProjectSkillsAssessment.Repository\ManagePeopleWithTheirAccounts.Repository.csproj", "{BD23FD68-F499-44A0-9AEA-22C1C32F3B0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagePeopleWithTheirAccounts.ViewModel", "ManagePeopleWithTheirAccounts.ViewModel\ManagePeopleWithTheirAccounts.ViewModel.csproj", "{92301D68-B28C-4300-9D75-E0EB7C0DAE4E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{268A8DC0-D55B-48A3-93E9-281305627C2E} = {268A8DC0-D55B-48A3-93E9-281305627C2E}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagePeopleWithTheirAccounts.Business", "ManagePeopleWithTheirAccounts.Business\ManagePeopleWithTheirAccounts.Business.csproj", "{12A8E8D0-7B98-42B9-8F07-E1831DE3CADE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{268A8DC0-D55B-48A3-93E9-281305627C2E} = {268A8DC0-D55B-48A3-93E9-281305627C2E}
+		{92301D68-B28C-4300-9D75-E0EB7C0DAE4E} = {92301D68-B28C-4300-9D75-E0EB7C0DAE4E}
+		{BD23FD68-F499-44A0-9AEA-22C1C32F3B0A} = {BD23FD68-F499-44A0-9AEA-22C1C32F3B0A}
 	EndProjectSection
 EndProject
 Global
@@ -39,6 +46,10 @@ Global
 		{92301D68-B28C-4300-9D75-E0EB7C0DAE4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92301D68-B28C-4300-9D75-E0EB7C0DAE4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92301D68-B28C-4300-9D75-E0EB7C0DAE4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12A8E8D0-7B98-42B9-8F07-E1831DE3CADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12A8E8D0-7B98-42B9-8F07-E1831DE3CADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12A8E8D0-7B98-42B9-8F07-E1831DE3CADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12A8E8D0-7B98-42B9-8F07-E1831DE3CADE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

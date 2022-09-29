@@ -5,15 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebProjectSkillsAssessment.Domain.Entities
+namespace ManagePeopleWithTheirAccounts.ViewModel.PersonViewModel
 {
-    public class Person
+    public class PersonsViewModel
     {
         [Key]
         public int Code { get; set; }
+        [Required]
         public string Name { get; set; } = string.Empty;
-        public string Surname { get; set; }= string.Empty;
+        [Required]
+        public string Surname { get; set; } = string.Empty;
+        [Required]
         public string Id_number { get; set; } = string.Empty;
-        
     }
 }

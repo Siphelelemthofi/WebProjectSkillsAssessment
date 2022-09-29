@@ -1,16 +1,22 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.8" />
+    <Folder Include="AccountBusiness\" />
+    <Folder Include="TransactionBusiness\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ManagePeopleWithTheirAccounts.ViewModel\ManagePeopleWithTheirAccounts.ViewModel.csproj" />
     <ProjectReference Include="..\WebProjectSkillsAssessment.Domain\ManagePeopleWithTheirAccounts.Data.csproj" />
     <ProjectReference Include="..\WebProjectSkillsAssessment.Repository\ManagePeopleWithTheirAccounts.Repository.csproj" />
   </ItemGroup>
