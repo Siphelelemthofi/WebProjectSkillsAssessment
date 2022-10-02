@@ -78,7 +78,6 @@ namespace WebProjectSkillsAssessment.Repository.AccountRepository
             {
                 return false;
             }
-        
         }
         public decimal GetCurrentAccountBalance(int Code)
         {

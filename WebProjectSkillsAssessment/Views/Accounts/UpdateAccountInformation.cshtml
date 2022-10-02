@@ -1,7 +1,7 @@
 ﻿@using WebProjectSkillsAssessment.Domain.Entities
  @model Account
  @{
-   double Amount = 0.00;
+     double Amount = 0.00;
     Amount = Convert.ToDouble(Model.OutstandingAmount);
 }
 <nav aria-label="breadcrumb">
@@ -22,7 +22,7 @@
                 <form method="post" id="form">
 
                     @Html.AntiForgeryToken()
-                    <input asp-for="@Model.Code" type="hidden" />
+                    <input asp-for="@Model.PersonCode " type="hidden" />
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.AccountNumber)

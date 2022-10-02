@@ -10,10 +10,12 @@ namespace WebProjectSkillsAssessment.Controllers
     public class PersonsController : Controller
     {
 
-        private readonly IPersonRepository _personRepository; private readonly PersonBusiness _personBusiness;
+        private readonly IPersonRepository _personRepository; 
+        private readonly PersonBusiness _personBusiness;
         public PersonsController(IPersonRepository personRepository,PersonBusiness  personBusiness)
         {
-            _personRepository = personRepository; _personBusiness = personBusiness;
+            _personRepository = personRepository;
+            _personBusiness = personBusiness;
         }
         public IActionResult Index()
         {
@@ -44,21 +46,18 @@ namespace WebProjectSkillsAssessment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddNewPerson(AddNewPerson addNewPerson)
         {
-            var IdNumber = _personRepository.CheckIfIdNumberExist(addNewPerson.Id_number);
+           
             if (ModelState.IsValid)
-            {
-                if (IdNumber)
+            { 
+                bool  CheckIfIdNumberExist = _personRepository.CheckIfIdNumberExist(addNewPerson.Id_number);
+                if (CheckIfIdNumberExist)
                 {
                     ViewBag.DuplicateIDNumber = " Id_Number " + addNewPerson.Id_number + " already exists in our system ";
                     return View();
                 }
-                else
-                {
                     _personRepository.AddNewPerson(addNewPerson);
                     return Redirect("GetListOfPersons");
-                }
-
-            }
+              }
             return View(addNewPerson);
         }
         [HttpGet]
@@ -76,7 +75,6 @@ namespace WebProjectSkillsAssessment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePersonConfirm(int IdORCode)
         {
-
             _personRepository.DeleteUserWithNoAccountOrAccountClosed(IdORCode);
             return Redirect("GetListOfPeopleWithNoAccount");
         }
