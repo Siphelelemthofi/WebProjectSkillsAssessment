@@ -44,21 +44,21 @@ namespace WebProjectSkillsAssessment.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddNewPerson(AddNewPerson addNewPerson)
+        public ActionResult AddNewPerson(AddNewPersonViewModel   addNewPersonViewModel)
         {
-           
+ 
             if (ModelState.IsValid)
             { 
-                bool  CheckIfIdNumberExist = _personRepository.CheckIfIdNumberExist(addNewPerson.Id_number);
+                bool  CheckIfIdNumberExist = _personRepository.CheckIfIdNumberExist(addNewPersonViewModel.Id_number);
                 if (CheckIfIdNumberExist)
                 {
-                    ViewBag.DuplicateIDNumber = " Id_Number " + addNewPerson.Id_number + " already exists in our system ";
+                    ViewBag.DuplicateIDNumber = " Id_Number " + addNewPersonViewModel.Id_number + " already exists in our system ";
                     return View();
                 }
-                    _personRepository.AddNewPerson(addNewPerson);
+                    _personBusiness.AddNewPerson(addNewPersonViewModel);
                     return Redirect("GetListOfPersons");
               }
-            return View(addNewPerson);
+            return View(addNewPersonViewModel);
         }
         [HttpGet]
         public ActionResult GetPersonDetailsByIdOrCode(int IdORCode)

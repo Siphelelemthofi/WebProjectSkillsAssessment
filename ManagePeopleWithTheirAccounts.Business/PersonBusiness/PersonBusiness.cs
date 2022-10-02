@@ -20,5 +20,10 @@ namespace ManagePeopleWithTheirAccounts.Business.PersonBusiness
             var GetAllPerson =  _personRepository.GetPersonList(SearchName);
             return Domain.ObjectMapper.Mapper.Map<List<PersonsViewModel>>(GetAllPerson);
         }
+        public void AddNewPerson(AddNewPersonViewModel addNewPersonViewModel)
+        {
+            Domain.ObjectMapper.Mapper.Map<AddNewPersonViewModel>(_personRepository.AddNewPerson(addNewPersonViewModel));
+             
+        }
     }
 }

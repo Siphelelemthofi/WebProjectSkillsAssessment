@@ -1,5 +1,6 @@
-﻿@using WebProjectSkillsAssessment.Domain.Entities
-@model AddNewPerson
+﻿@using ManagePeopleWithTheirAccounts.ViewModel.PersonViewModel
+
+@model AddNewPersonViewModel
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
         <li class="breadcrumb-item text-sm"><i class="opacity-5 text-white fa fa-home"></i></li>
@@ -19,16 +20,16 @@
                     @Html.AntiForgeryToken()
                    
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Name)
-                        <input asp-for="@Model.Name" type="text" class="form-control" />
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.name)
+                        <input asp-for="@Model.name " type="text" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                     </div>
 
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Surname)
-                        <input asp-for="@Model.Surname" type="text" class="form-control" />
-                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.surname)
+                        <input asp-for="@Model.surname" type="text" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.surname, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(model => model.Id_number)
