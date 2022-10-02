@@ -25,7 +25,6 @@ namespace WebProjectSkillsAssessment.Repository.AccountRepository
             {
                 new SqlParameter("@PersonCode",account.Code),
                 new SqlParameter("@AccountNumber",account.AccountNumber)
-                
             };
             var query = "EXEC [AddNewUserAccount]  @PersonCode,@AccountNumber";
             _dataContext.Database.ExecuteSqlRaw(query, parameters);
