@@ -7,27 +7,29 @@
         right: 0;
     }
 </style>
+<br />
+<br />
+<div class="card card-body mt-12">
 <div class="jumbotron jumbotron-fluid">
     <p>
-        <div class="form-group row">
-            <div class="col-md-12">
+        <div class="col-lg-9 col-12 mx-auto">
+            <div class="card card-body mt-4">
                 <div class="input-group">
-                    @using (Html.BeginForm())
-                    {
-                        @foreach (var item in Model)
-                        {
-                            <p>
-                                <div class="position-absolute top-right">
-                                    <a asp-controller="/Transactions" asp-action="AddTransactions" asp-route-Code="@item.AccountCode" class="btn btn-primary">Add Transactions<i class="fa fa-dot-circle"></i></a>
-                                </div>
-                            </p>
-                        }
-                    }
+
+                    <form class="form-inline" >
+                        <label for="email">Date From:</label>
+                        <input type="date" id="DateFrom" name="DateFrom">
+                        <label for="pwd">Date To:</label>
+                        <input type="date" id="pwd" name="DateTo">
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
         <br />
         <br />
+        <div class="col-lg-9 col-12 mx-auto">
         <table class=table>
             <thead class="table-primary">
                 <tr>
@@ -58,4 +60,6 @@
            
         </table>
     </p>
+</div>
+</div>
 </div>

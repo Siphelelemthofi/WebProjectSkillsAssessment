@@ -59,13 +59,11 @@ namespace WebProjectSkillsAssessment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UpdateAccountInformation(Account account)
         {
-            string AccountNumber = string.Empty;
             if (ModelState.IsValid)
             {
                 _accountRepository.UpdateAccountInformation(account);
-                return RedirectToAction("GetAccountList", "Accounts", new { Code = account.Code });
+                return RedirectToAction("GetAccountList", "Accounts", new { Code = account.PersonCode });
             }
-           
             return View();
         }
         public ActionResult Dashboard()

@@ -22,25 +22,41 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
         }
         public  List<Person> GetPersonList(string SearchString)
         {
-            object[] parameters =
+            try
             {
+                object[] parameters =
+                {
                 new SqlParameter("@SearchString",string.IsNullOrEmpty(SearchString)?(object)DBNull.Value:(object) SearchString)
-            };
-            var query = "EXEC [GetAllPerson] @SearchString";
-            var returnResult = _dataContext.Set<Person>().FromSqlRaw(query, parameters);
-            return returnResult.ToList();
-             
+                };
+                var query = "EXEC [GetAllPerson] @SearchString";
+                var returnResult = _dataContext.Set<Person>().FromSqlRaw(query, parameters);
+                return returnResult.ToList();
+            }
+            catch (SqlException ex)
+            {
+                throw new(ex.Message);
+
+            }
+
         }
         public void AddNewPerson (AddNewPerson  addNewPerson)
         {
-            object[] parameters =
+            try
             {
+                object[] parameters =
+                {
                 new SqlParameter("@Name",addNewPerson.Name),
                 new SqlParameter("@Surname",addNewPerson.Surname),
                 new SqlParameter("@Id_Number",addNewPerson.Id_number)
             };
-            var query = "EXEC [AddNewPerson] @Name,@Surname,@Id_Number";
-            _dataContext.Database.ExecuteSqlRaw(query, parameters);
+                var query = "EXEC [AddNewPerson] @Name,@Surname,@Id_Number";
+                _dataContext.Database.ExecuteSqlRaw(query, parameters);
+            }
+            catch(SqlException ex)
+            {
+                throw new ( ex.Message);
+
+            }       
         }
         public Person GetPersonByCodeOrId(int Code)
         {

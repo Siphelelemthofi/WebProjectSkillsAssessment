@@ -1,6 +1,8 @@
 ﻿using ManagePeopleWithTheirAccounts.Business.PersonBusiness;
 using ManagePeopleWithTheirAccounts.ViewModel.PersonViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using WebProjectSkillsAssessment.Bussiness.Interface;
 using WebProjectSkillsAssessment.Domain.Entities;
 
@@ -10,7 +12,8 @@ namespace WebProjectSkillsAssessment.Controllers
     public class PersonsController : Controller
     {
 
-        private readonly IPersonRepository _personRepository; private readonly PersonBusiness _personBusiness;
+        private readonly IPersonRepository _personRepository; 
+        private readonly PersonBusiness _personBusiness;
         public PersonsController(IPersonRepository personRepository,PersonBusiness  personBusiness)
         {
             _personRepository = personRepository; _personBusiness = personBusiness;
@@ -33,31 +36,37 @@ namespace WebProjectSkillsAssessment.Controllers
             var getListOfPeople = _personRepository.GetPersonListWithNoAccounts(SearchString);
             return View(PaginationList<Person>.Create(getListOfPeople,
                 PageNumber ?? 1, pageSize));
-
         }
         public ActionResult AddNewPerson()
         {
-
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddNewPerson(AddNewPerson addNewPerson)
         {
-            var IdNumber = _personRepository.CheckIfIdNumberExist(addNewPerson.Id_number);
-            if (ModelState.IsValid)
+            try
             {
-                if (IdNumber)
+                var IdNumber = _personRepository.CheckIfIdNumberExist(addNewPerson.Id_number);
+                if (ModelState.IsValid)
                 {
-                    ViewBag.DuplicateIDNumber = " Id_Number " + addNewPerson.Id_number + " already exists in our system ";
-                    return View();
+                    if (IdNumber)
+                    {
+                        ViewBag.DuplicateIDNumber = " Id_Number " + addNewPerson.Id_number + " already exists in our system ";
+                        return View();
+                    }
+                    else
+                    {
+                        _personRepository.AddNewPerson(addNewPerson);
+                        return Redirect("GetListOfPersons");
+                    }
                 }
-                else
-                {
-                    _personRepository.AddNewPerson(addNewPerson);
-                    return Redirect("GetListOfPersons");
-                }
-
+            }
+            catch (DbUpdateException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. " +
+                "Try again, and if the problem persists " +
+                 "see your system administrator.");
             }
             return View(addNewPerson);
         }
