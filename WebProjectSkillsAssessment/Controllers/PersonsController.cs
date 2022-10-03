@@ -16,7 +16,8 @@ namespace WebProjectSkillsAssessment.Controllers
         private readonly PersonBusiness _personBusiness;
         public PersonsController(IPersonRepository personRepository,PersonBusiness  personBusiness)
         {
-            _personRepository = personRepository; _personBusiness = personBusiness;
+            _personRepository = personRepository;
+            _personBusiness = personBusiness;
         }
         public IActionResult Index()
         {
@@ -43,32 +44,21 @@ namespace WebProjectSkillsAssessment.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddNewPerson(AddNewPerson addNewPerson)
+        public ActionResult AddNewPerson(AddNewPersonViewModel   addNewPersonViewModel)
         {
-            try
-            {
-                var IdNumber = _personRepository.CheckIfIdNumberExist(addNewPerson.Id_number);
-                if (ModelState.IsValid)
+ 
+            if (ModelState.IsValid)
+            { 
+                bool  CheckIfIdNumberExist = _personRepository.CheckIfIdNumberExist(addNewPersonViewModel.Id_number);
+                if (CheckIfIdNumberExist)
                 {
-                    if (IdNumber)
-                    {
-                        ViewBag.DuplicateIDNumber = " Id_Number " + addNewPerson.Id_number + " already exists in our system ";
-                        return View();
-                    }
-                    else
-                    {
-                        _personRepository.AddNewPerson(addNewPerson);
-                        return Redirect("GetListOfPersons");
-                    }
+                    ViewBag.DuplicateIDNumber = " Id_Number " + addNewPersonViewModel.Id_number + " already exists in our system ";
+                    return View();
                 }
-            }
-            catch (DbUpdateException)
-            {
-                ModelState.AddModelError("", "Unable to save changes. " +
-                "Try again, and if the problem persists " +
-                 "see your system administrator.");
-            }
-            return View(addNewPerson);
+                    _personBusiness.AddNewPerson(addNewPersonViewModel);
+                    return Redirect("GetListOfPersons");
+              }
+            return View(addNewPersonViewModel);
         }
         [HttpGet]
         public ActionResult GetPersonDetailsByIdOrCode(int IdORCode)
@@ -85,7 +75,6 @@ namespace WebProjectSkillsAssessment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePersonConfirm(int IdORCode)
         {
-
             _personRepository.DeleteUserWithNoAccountOrAccountClosed(IdORCode);
             return Redirect("GetListOfPeopleWithNoAccount");
         }

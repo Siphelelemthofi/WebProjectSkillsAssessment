@@ -26,7 +26,7 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.TransactionDate)
-                        <input asp-for="@Model.TransactionDate" type="datetime-local" class="form-control" />
+                        <input asp-for="@Model.TransactionDate" type="datetime-local" class="form-control" id="TransactionDate"/>
                         @Html.ValidationMessageFor(model => model.TransactionDate, "", new { @class = "text-danger" })
                     </div>
 
@@ -59,4 +59,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>@*@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>    $(function(){$("TransactionDate").datepicker({maxDate:new Date}) })      };*@

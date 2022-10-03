@@ -73,7 +73,7 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
                 object[] parameter =
                 {
                 new SqlParameter("@Code",Code)
-            };
+                };
                 var query = "EXEC [DeletePerson] @Code";
                 _dataContext.Database.ExecuteSqlRaw(query, parameter);
         }

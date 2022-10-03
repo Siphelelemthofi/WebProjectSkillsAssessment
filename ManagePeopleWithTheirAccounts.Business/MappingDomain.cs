@@ -15,7 +15,7 @@ namespace ManagePeopleWithTheirAccounts.Domain
         {
             var Mapping = new MapperConfiguration(map =>
             {
-               map.CreateMap<Person, PersonsViewModel>().ReverseMap();
+               map.CreateMap<Person, PersonsViewModel>().ReverseMap(); map.CreateMap<AddNewPerson, AddNewPersonViewModel>().ReverseMap();
             });
             var mapper = Mapping.CreateMapper();
             return mapper;

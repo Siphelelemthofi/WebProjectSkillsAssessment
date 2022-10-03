@@ -13,9 +13,7 @@ namespace WebProjectSkillsAssessment.Domain.Entities
         public string Name { get; set; } = string.Empty;
         [Required]
         public string Surname { get; set; } = string.Empty;
-        [Required]
-        [MaxLength(13)]
-        [MinLength(13)]
+  
         public string Id_number { get; set; } = string.Empty;
     }
 }

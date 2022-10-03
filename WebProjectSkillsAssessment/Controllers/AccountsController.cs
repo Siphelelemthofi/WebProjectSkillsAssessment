@@ -17,6 +17,10 @@ namespace WebProjectSkillsAssessment.Controllers
         }
         public ActionResult GetAccountList(int Code)
         {
+            if(Code == 0)
+            {
+              return NotFound();
+            }
             var getListOfAccount = _accountRepository.GetPersonAccountByCodeOrId(Code);
             return View(getListOfAccount);
         }
@@ -33,19 +37,16 @@ namespace WebProjectSkillsAssessment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddNewPersonAccount(Account account)
         {
-            var CheckAccountNumber = _accountRepository.CheckAccountNumber(account.AccountNumber);
             if (ModelState.IsValid)
             {
-                if (CheckAccountNumber)
+                bool CheckIfAccountNumberExist = _accountRepository.CheckAccountNumber(account.AccountNumber);
+                if (CheckIfAccountNumberExist)
                 {
                     ViewBag.CheckAccountNumber = " Account Number " + account.AccountNumber + " already exist in our system";
                     return View();
                 }
-                else
-                {
-                    _accountRepository.AddNewAccount(account);
-                }
-                return RedirectToAction("GetAccountList", "Accounts", new { Code = account.Code });
+                  _accountRepository.AddNewAccount(account);
+                  return RedirectToAction("GetAccountList", "Accounts", new { Code = account.Code });
             }
             return View(account);
         }
@@ -58,17 +59,13 @@ namespace WebProjectSkillsAssessment.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateAccountInformation(Account account)
-        {
+        {   
             if (ModelState.IsValid)
             {
                 _accountRepository.UpdateAccountInformation(account);
-                return RedirectToAction("GetAccountList", "Accounts", new { Code = account.PersonCode });
-            }
-            return View();
-        }
-        public ActionResult Dashboard()
-        {
-            return View();
+                return RedirectToAction("GetAccountList", "Accounts", new { Code = account.Code });
+            }           
+            return View(account);
         }
     }
 }
