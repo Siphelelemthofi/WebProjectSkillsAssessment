@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ManagePeopleWithTheirAccounts.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using WebProjectSkillsAssessment.Domain.Entities;
 using Transaction = WebProjectSkillsAssessment.Domain.Entities.Transaction;
 
@@ -10,13 +11,18 @@ namespace WebProjectSkillsAssessment.Repository.Data
         {
 
         }
-        public DbSet<Person> ? UserInformation{get;set;}
+        public DbSet<Person>?  UserInformation{get;set;}
+        public DbSet<GetAllPersons>? GetAllPersons { get; set; }
         public DbSet<Account> ? UserAccount { get; set; }
         public DbSet<Transaction> ? UserTransaction { get; set; }
-        public DbSet<GetAllIdNumberForPersons> ? getAllIdNumberForPersons { get; set; }
-        public DbSet<GetAllAccountNumber> ? getAllAccountNumbers { get; set; }
-        public DbSet<GetTransactionsByAccountCodeOrId> ?  getTransactionsByAccountCodeOrIds { get; set; }
-        public DbSet<UpdateUserInformation> ? updateUserInformation { get; set; }
-       
+        public DbSet<GetTransactionsByAccountCodeOrId> ? GetTransactionsByAccountCodeOrIds { get; set; }
+        public DbSet<UpdateUserInformation> ? UpdateUserInformation { get; set; }
+        public DbSet<GetPersonDetailsByCode> ? GetPersonDetailsByCode { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<GetAllIdNumberForPersons>().HasNoKey().ToView(null);
+            modelBuilder.Entity<GetAllAccountNumber>().HasNoKey().ToView(null);
+        }
     }
 }

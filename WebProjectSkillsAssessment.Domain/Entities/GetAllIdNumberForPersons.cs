@@ -9,7 +9,6 @@ namespace WebProjectSkillsAssessment.Domain.Entities
 {
     public class GetAllIdNumberForPersons
     {
-        [Key]
         public string Id_number { get; set; } = string.Empty;
     }
 }

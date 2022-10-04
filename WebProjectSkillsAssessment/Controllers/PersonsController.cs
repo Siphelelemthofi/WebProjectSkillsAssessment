@@ -12,12 +12,14 @@ namespace WebProjectSkillsAssessment.Controllers
     public class PersonsController : Controller
     {
 
-        private readonly IPersonRepository _personRepository; 
+        private readonly IPersonRepository _personRepository;
+        private readonly IAccountRepository _accountRepository;
         private readonly PersonBusiness _personBusiness;
-        public PersonsController(IPersonRepository personRepository,PersonBusiness  personBusiness)
+        public PersonsController(IPersonRepository personRepository,PersonBusiness  personBusiness, IAccountRepository accountRepository)
         {
             _personRepository = personRepository;
             _personBusiness = personBusiness;
+            _accountRepository = accountRepository;
         }
         public IActionResult Index()
         {
@@ -28,7 +30,7 @@ namespace WebProjectSkillsAssessment.Controllers
         {
             int pageSize = 10;
             var getListOfPeople = _personBusiness.GetListOfPerson(SearchString);
-            return View(PaginationList<PersonsViewModel>.Create(getListOfPeople,
+            return View(PaginationList<GetAllPersonsViewModel>.Create(getListOfPeople,
                 PageNumber ?? 1, pageSize));
         }
         public ActionResult GetListOfPeopleWithNoAccount(int? PageNumber, string SearchString)
@@ -44,9 +46,8 @@ namespace WebProjectSkillsAssessment.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddNewPerson(AddNewPersonViewModel   addNewPersonViewModel)
+        public ActionResult AddNewPerson(AddNewPersonViewModel  addNewPersonViewModel)
         {
- 
             if (ModelState.IsValid)
             { 
                 bool  CheckIfIdNumberExist = _personRepository.CheckIfIdNumberExist(addNewPersonViewModel.Id_number);
@@ -63,8 +64,10 @@ namespace WebProjectSkillsAssessment.Controllers
         [HttpGet]
         public ActionResult GetPersonDetailsByIdOrCode(int IdORCode)
         {
-            var GetPersonDetailsByIdOrCode = _personRepository.GetPersonByCodeOrId(IdORCode);
-            return View(GetPersonDetailsByIdOrCode);
+            PersonDetailsWithListOfAccountViewModel persoDetailWithAccounts = new PersonDetailsWithListOfAccountViewModel();
+            persoDetailWithAccounts.GetPersonDetails = _personBusiness.GetPersonDetailsByIdOrCode(IdORCode);
+            persoDetailWithAccounts.AccountList = _accountRepository.GetPersonAccountByCodeOrId(IdORCode);
+            return View(persoDetailWithAccounts);
         }
         public ActionResult DeletePerson(int IdORCode)
         {
@@ -81,19 +84,19 @@ namespace WebProjectSkillsAssessment.Controllers
         [HttpGet]
         public ActionResult UpdateUserInformation(int IdORCode)
         {
-            var GetPersonDetailsByIdOrCode = _personRepository.GetPersonByCodeOrId(IdORCode);
+            var GetPersonDetailsByIdOrCode = _personBusiness.GetInformationToUpdate(IdORCode);
             return View(GetPersonDetailsByIdOrCode);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateUserInformation(Person Person)
+        public ActionResult UpdateUserInformation(UpdatePersonInformationViewModel  updatePersonInformationViewModel)
         {
             if (ModelState.IsValid)
             {
-                _personRepository.UpdatePersonInformation(Person);
+                _personBusiness.UpdatePersonInformation(updatePersonInformationViewModel);
                 return Redirect("GetListOfPersons");
             }
-            return View(Person);
+            return View(updatePersonInformationViewModel);
         }
     }
 }

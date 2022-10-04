@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using ManagePeopleWithTheirAccounts.Data.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
         {
             _dataContext = dataContext;
         }
-        public  List<Person> GetPersonList(string SearchString)
+        public  List<GetAllPersons> GetPersonList(string SearchString)
         {
             try
             {
@@ -29,7 +30,7 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
                 new SqlParameter("@SearchString",string.IsNullOrEmpty(SearchString)?(object)DBNull.Value:(object) SearchString)
                 };
                 var query = "EXEC [GetAllPerson] @SearchString";
-                var returnResult = _dataContext.Set<Person>().FromSqlRaw(query, parameters);
+                var returnResult = _dataContext.Set<GetAllPersons>().FromSqlRaw(query, parameters);
                 return returnResult.ToList();
             }
             catch (SqlException ex)
@@ -58,14 +59,14 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
 
             }       
         }
-        public Person GetPersonByCodeOrId(int Code)
+        public GetPersonDetailsByCode GetPersonByCodeOrId(int Code)
         {
-            object[] parameters =
+            object[] parameters = new SqlParameter[]    
             {
                 new SqlParameter("@Code",Code)
             };
             var query = "EXEC [GetPersonDetailsByCodeOrId] @Code";
-            var PersonDetails = _dataContext.Set<Person>().FromSqlRaw(query, parameters).ToList();
+            var PersonDetails = _dataContext.Set<GetPersonDetailsByCode>().FromSqlRaw(query, parameters).ToList();
             return PersonDetails.FirstOrDefault();    
         }
         public void DeleteUserWithNoAccountOrAccountClosed(int Code)
@@ -77,12 +78,12 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
                 var query = "EXEC [DeletePerson] @Code";
                 _dataContext.Database.ExecuteSqlRaw(query, parameter);
         }
-        public void UpdatePersonInformation(Person Person)
+        public void UpdatePersonInformation(UpdateUserInformation updatePersonInformation)
         {
             object[] parameter = {
-            new SqlParameter("@Code",Person.Code),
-            new SqlParameter("@Name",Person.Name),
-            new SqlParameter("@Surname",Person.Surname)
+            new SqlParameter("@Code",updatePersonInformation.Code),
+            new SqlParameter("@Name",updatePersonInformation.Name),
+            new SqlParameter("@Surname",updatePersonInformation.Surname)
 
             };
             var query = "EXEC [UpdatepersonInformation] @Code,@Name,@Surname";
@@ -106,13 +107,7 @@ namespace WebProjectSkillsAssessment.Repository.PersonRepository
                 return false;
             }
         }
-        public List<UserLogin> GetUserLoginDetails()
-        {
-            var query = "EXEC [UserLogin]";
-            var returnResult = _dataContext.Set<UserLogin>().FromSqlRaw(query);
-            return returnResult.ToList();
-        }
- 
+
         public List<Person> GetPersonListWithNoAccounts(string SearchString)
         {
             object[] parameters =

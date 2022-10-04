@@ -1,41 +1,43 @@
 ﻿@using ManagePeopleWithTheirAccounts.ViewModel.PersonViewModel
 @using WebProjectSkillsAssessment.Domain.Entities
    
-@model PaginationList<PersonsViewModel>
+@model PaginationList<GetAllPersonsViewModel>
 <style>
     .top-right {
-        top: 0;
-        right: 0;
+        top: 1%;
+        right: 1%;
     }
 </style>
 <br />
 <br />
 <div class="card card-body mt-12">
+        <div class="card card-body mt-4">
+                @using (Html.BeginForm())
+                {
+                        <div class="input-group">
+                            <div class="form-outline">
+                                @Html.TextBox("SearchString")
+                            </div>
+                            <button type="submit" t class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                     }
+                     <br />
+            <div class="position-absolute top-right">
+                <a asp-controller="/Persons" asp-action="AddNewPerson" class="btn btn-primary"> <i class="fas fa-plus"></i> add Person</a>
+            </div> 
+        </div>
+    <br />
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
 <div class="jumbotron jumbotron-fluid">
-    <p> 
-    <div class="form-group row">
-        <div class="col-md-12">
-            <div class="input-group">
-                @using (Html.BeginForm())
-                {
-                    <p>
-                        Search by ID Number and Surname: @Html.TextBox("SearchString")
-                        <input type="submit"  value="Search" />
-                            <div class="position-absolute top-right">
-                                <a href="@Url.ActionLink("AddNewPerson", "Persons")" class="btn btn-primary">Add Person<i class="fa fa-dot-circle"></i></a>
-                            </div>
-                    </p>
-                }
-            </div>
-        </div>
-    </div>
+ 
         
         <table class=table>
             <thead class="table-primary">
                 <tr>
-                   <th>@Html.DisplayName("Code")</th>
+                 @*  <th>@Html.DisplayName("Code")</th>*@
                    <th>@Html.DisplayName("Name")</th>
                    <th>@Html.DisplayName("Surname ")</th>
                    <th>@Html.DisplayName("Id_Number")</th>
@@ -43,19 +45,19 @@
                 </tr>
             </thead>
             <tbody>
-        
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem =>item.Code)</td>
+                @*        <td>@Html.DisplayFor(modelItem =>item.Code)</td>*@
                         <td>@Html.DisplayFor(modelItem =>item.Name)</td>
                         <td>@Html.DisplayFor(modelItem =>item.Surname)</td>
                         <td>@Html.DisplayFor(modelItem =>item.Id_number)</td>
                         <td>
+                                    <a asp-controller="/Persons" asp-action="UpdateUserInformation" class="badge badge-danger rounded-pill d-inline"
+                                   data-mdb-ripple-color="dark" asp-route-IdORCode="@item.Code" data-mdb-toggle="tooltip" data-mdb-placement="right" title="Remove Person Information"><i class="fas fa-trash"></i></a>
                                     <a asp-controller="/Persons" asp-action="GetPersonDetailsByIdOrCode" class="badge badge-primary rounded-pill d-inline"
-                data-mdb-ripple-color="dark" asp-route-IdORCode="@item.Code">Details</a>
-                                    <a asp-controller="/Persons" asp-action="UpdateUserInformation" class="badge badge-warning rounded-pill d-inline"
-                                   data-mdb-ripple-color="dark" asp-route-IdORCode="@item.Code">Edit</a>
+                                   data-mdb-ripple-color="dark" asp-route-IdORCode="@item.Code" data-mdb-toggle="tooltip" data-mdb-placement="right" title="View Person Information"><i class="fas fa-user-edit"></i></a>
+                                  
                         </td>
                        
                     </tr>
@@ -69,13 +71,13 @@
     </div>
 </div>
 </div>
+
 @{
     var preDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 } 
 <br />
-<br />
- 
+
 <a asp-action="GetListOfPersons" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-outline-dark @preDisabled">Previous </a>
 <a asp-action="GetListOfPersons" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-outline-dark @nextDisabled">Next</a>
 

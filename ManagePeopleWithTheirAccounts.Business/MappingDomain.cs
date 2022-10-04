@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ManagePeopleWithTheirAccounts.Data.Entities;
 using ManagePeopleWithTheirAccounts.ViewModel.PersonViewModel;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,10 @@ namespace ManagePeopleWithTheirAccounts.Domain
         {
             var Mapping = new MapperConfiguration(map =>
             {
-               map.CreateMap<Person, PersonsViewModel>().ReverseMap(); map.CreateMap<AddNewPerson, AddNewPersonViewModel>().ReverseMap();
+               map.CreateMap<GetAllPersons, GetAllPersonsViewModel>().ReverseMap();
+               map.CreateMap<AddNewPerson, AddNewPersonViewModel>().ReverseMap();
+               map.CreateMap<GetPersonDetailsByCode, GetPersonDetailsByCodeViewModel>().ReverseMap();
+                map.CreateMap<UpdateUserInformation, UpdatePersonInformationViewModel>().ReverseMap();
             });
             var mapper = Mapping.CreateMapper();
             return mapper;

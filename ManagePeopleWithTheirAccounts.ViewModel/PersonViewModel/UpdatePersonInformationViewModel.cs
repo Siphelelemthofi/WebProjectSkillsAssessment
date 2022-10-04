@@ -1,21 +1,20 @@
-﻿using System;
+﻿using ManagePeopleWithTheirAccounts.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebProjectSkillsAssessment.Domain.Entities;
 
 namespace ManagePeopleWithTheirAccounts.ViewModel.PersonViewModel
 {
-    public class PersonsViewModel
+    public class UpdatePersonInformationViewModel : BasePrimaryKeyViewModelcs
     {
-        [Key]
-        public int Code { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; } = string.Empty;
-        [Required]
+        [Required(ErrorMessage = "Surname is required")]
         public string Surname { get; set; } = string.Empty;
-        [Required]
         public string Id_number { get; set; } = string.Empty;
     }
 }

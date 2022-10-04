@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebProjectSkillsAssessment.Domain.Entities
+namespace ManagePeopleWithTheirAccounts.ViewModel.PersonViewModel
 {
-    public class GetAllAccountNumber
+    public class BasePrimaryKeyViewModelcs
     {
-        public string AccountNumber { get; set; }  =string.Empty;
+        [Key]
+        public int Code { get; set; }
     }
 }

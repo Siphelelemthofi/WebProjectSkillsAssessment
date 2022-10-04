@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebProjectSkillsAssessment.Domain.Entities
+namespace ManagePeopleWithTheirAccounts.Data.Entities
 {
-    public class GetAllAccountNumber
+    public class BasePrimaryKey
     {
-        public string AccountNumber { get; set; }  =string.Empty;
+        [Key]
+        public int Code { get; set; }
     }
 }

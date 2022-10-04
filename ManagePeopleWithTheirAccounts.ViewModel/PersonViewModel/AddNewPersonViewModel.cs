@@ -9,11 +9,11 @@ namespace ManagePeopleWithTheirAccounts.ViewModel.PersonViewModel
 {
     public class AddNewPersonViewModel
     {
-        [Required]
-        public string name { get; set; } = string.Empty;
-        [Required]
-        public string surname { get; set; } = string.Empty;
-        [Required]
+        [Required(ErrorMessage = "Name is required")]
+        public string Name { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Surname is required")]
+        public string Surname { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Id_number is required")]
         [MaxLength(13)]
         [MinLength(13)]
         public string Id_number { get; set; } = string.Empty;

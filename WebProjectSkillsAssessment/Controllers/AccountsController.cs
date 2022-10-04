@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ManagePeopleWithTheirAccounts.ViewModel.AccountViewModel;
+using Microsoft.AspNetCore.Mvc;
 using WebProjectSkillsAssessment.Bussiness.Interface;
 using WebProjectSkillsAssessment.Domain.Entities;
 
@@ -7,9 +8,11 @@ namespace WebProjectSkillsAssessment.Controllers
     public class AccountsController : Controller
     {
         private readonly IAccountRepository _accountRepository;
-        public AccountsController(IAccountRepository accountRepository)
+        private readonly ITransationRepository _transationRepository;
+        public AccountsController(IAccountRepository accountRepository, ITransationRepository transationRepository)
         {
             _accountRepository = accountRepository;
+            _transationRepository = transationRepository;   
         }
         public IActionResult Index()
         {
@@ -17,17 +20,15 @@ namespace WebProjectSkillsAssessment.Controllers
         }
         public ActionResult GetAccountList(int Code)
         {
-            if(Code == 0)
-            {
-              return NotFound();
-            }
             var getListOfAccount = _accountRepository.GetPersonAccountByCodeOrId(Code);
             return View(getListOfAccount);
         }
         public ActionResult GetAccountDetailsByAccountNumber(string AccountNumber)
         {
-            var getAccountDetails = _accountRepository.GetAccountDetails(AccountNumber);
-            return View(getAccountDetails);
+            AccountDetailsWithTransationList accountDetailsWithTransationList = new AccountDetailsWithTransationList();
+            accountDetailsWithTransationList.Account = _accountRepository.GetAccountDetails(AccountNumber);
+            accountDetailsWithTransationList.getTransactionsByAccountCodeOrIds = _transationRepository.GetTransactionsByAccountCodeOrId(accountDetailsWithTransationList.Account.Code);
+            return View(accountDetailsWithTransationList);
         }
         public ActionResult AddNewPersonAccount()
         {

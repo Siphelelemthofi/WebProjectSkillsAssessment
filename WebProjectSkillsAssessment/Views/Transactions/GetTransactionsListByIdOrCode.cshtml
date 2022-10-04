@@ -50,7 +50,7 @@
                         <td>@Html.DisplayFor(modelItem =>item.CaptureDate)</td>
                         <td>
                             <a asp-controller="/Transactions" asp-action="GetTransactionDetailsByAccountCodeOrId" asp-route-AccountCode="@item.Code" class="btn bg-gradient-primary mt-2 me-2">View Details</a>
-                            <a asp-controller="/Transactions" asp-action="UpdateTransactions" asp-route-Code="@item.Code" class="btn bg-gradient-primary mt-2 me-2">Edit Details</a>
+                                        <a asp-controller="/Transactions" asp-action="UpdateTransactions" asp-route-Code="@item.Code" class="btn bg-gradient-primary mt-2 me-2">Edit Details<i class="fas fa-user-edit"></i></a>
                         </td>
                     </tr>
                  }
